@@ -35,10 +35,19 @@ class SetUp
   ///static function that takes in a letter as colum and conver to number for array format
   ///@param letter that is chosen from column input
   static int lettersToNumbers(std::string letter);
+
+
+
+  ///a simple function to return what the type of play style is
+  ///just returns the playstyle
+  ///@post returns the play style
+  std::string getPlaystyle();
+
   
   private:
   ShipMap player1Map;/// two ShipMap objects
   ShipMap player2Map;
+  bool againstAI;
 };
 
 #endif
