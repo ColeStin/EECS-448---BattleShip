@@ -86,6 +86,11 @@ class ShipMap
 	/// @return true if the direction of ship placement is not overlapping another ship or out of bounds
 	bool isShipDirectionGood(int row, int col, int shipSize, char direction);
 	
+
+	///this function will get the array of ships and return it
+	///@return returns array of ship placement
+	bool ** getTableOfShips();
+
 	private:
 	bool ships[9][10];
 	bool attempts[9][10];

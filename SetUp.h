@@ -37,6 +37,10 @@ class SetUp
   static int lettersToNumbers(std::string letter);
 
 
+  ///returns difficulty of the bot, if AI is selected
+
+  int getDif();
+
 
   ///a simple function to return what the type of play style is
   ///just returns the playstyle
@@ -48,6 +52,7 @@ class SetUp
   ShipMap player1Map;/// two ShipMap objects
   ShipMap player2Map;
   bool againstAI;
+  int difficulty;
 };
 
 #endif

@@ -6,6 +6,7 @@
 */
 
 #include "SetUp.h"
+#include "BattleBot.h"
 #include <iostream>
 #include <stdexcept>
 using namespace std;
@@ -22,86 +23,148 @@ int main(){
 	int column, row;
 	bool validInput;
 	bool isStarted = 0;
-	
-	while (!player1.isGameOver() && !player2.isGameOver()){// while neither player has lost the game
-	  cout << string(1000, '\n');
-	  cout << "-----\nLegend\n-----\nX: Hit\n*: Opposing player's missed attempt\n#: Live ship\n~: Empty ocean\n\n";
-		cout << "Hello " + currentTurn + "! Here are the attempts you've made on your opponent's board" << endl;
-		if(currentTurn == "player1"){
-			player2.printEnemyPhase();
-			if(isStarted)
-			{
-			  if(player1.isHit(row-1, column))
-		    {
-		    	cout << "\n\nYour opponent landed a hit! \n";
-		    }
-		    else
-		    {
-		    	cout << "\n\nYour opponent missed. \n";
-		    }
-			}
-		  cout << "Here is your board:\n";
-		  player1.printPlayerPhase();
-			isStarted = 1;
-		}
-		else{
-			player1.printEnemyPhase();
-			if(player2.isHit(row-1, column))
-		  {
-		  	cout << "\n\nYour opponent landed a hit! \n";
-		  }
-		  else
-		  {
-		  	cout << "\n\nYour opponent missed. \n";
-		  }
+	if(setUpObject.getPlaystyle() == "PvP"){
+		while (!player1.isGameOver() && !player2.isGameOver()){// while neither player has lost the game
+		cout << string(1000, '\n');
+		cout << "-----\nLegend\n-----\nX: Hit\n*: Opposing player's missed attempt\n#: Live ship\n~: Empty ocean\n\n";
+			cout << "Hello " + currentTurn + "! Here are the attempts you've made on your opponent's board" << endl;
+			if(currentTurn == "player1"){
+				player2.printEnemyPhase();
+				if(isStarted)
+				{
+				if(player1.isHit(row-1, column))
+				{
+					cout << "\n\nYour opponent landed a hit! \n";
+				}
+				else
+				{
+					cout << "\n\nYour opponent missed. \n";
+				}
+				}
 			cout << "Here is your board:\n";
-			player2.printPlayerPhase();
-		}
-		validInput = false;
-		while(validInput == false){
-			try{
-				cout << "What column do you want to shoot at?" << endl;
-				cin >> columnLetter;
-				column = SetUp::lettersToNumbers(columnLetter);
-				cout << "What row do you want to shoot at?" << endl;
-				cin >> rowString;
-				if(stoi(rowString) < 10 && stoi(rowString) > 0){// This is for input sanitization
-					row = stoi(rowString);
-				}
-				else{
-					throw string("Row out of bounds");
-				}
-				if(currentTurn == "player1"){
-					player2.addAttempt(row-1, column);
-				}
-				else{
-					player1.addAttempt(row-1, column);
-				}
-				validInput = true;// if we got to this point without throwing an exception, then we can stop looping and pass the turn
+			player1.printPlayerPhase();
+				isStarted = 1;
 			}
-			catch (string e){
-				if (e == "Invalid Letter"){
-					cout << "That letter is not valid, please try a different letter" << endl;
+			else{
+				player1.printEnemyPhase();
+				if(player2.isHit(row-1, column))
+			{
+				cout << "\n\nYour opponent landed a hit! \n";
+			}
+			else
+			{
+				cout << "\n\nYour opponent missed. \n";
+			}
+				cout << "Here is your board:\n";
+				player2.printPlayerPhase();
+			}
+			validInput = false;
+			while(validInput == false){
+				try{
+					cout << "What column do you want to shoot at?" << endl;
+					cin >> columnLetter;
+					column = SetUp::lettersToNumbers(columnLetter);
+					cout << "What row do you want to shoot at?" << endl;
+					cin >> rowString;
+					if(stoi(rowString) < 10 && stoi(rowString) > 0){// This is for input sanitization
+						row = stoi(rowString);
+					}
+					else{
+						throw string("Row out of bounds");
+					}
+					if(currentTurn == "player1"){
+						player2.addAttempt(row-1, column);
+					}
+					else{
+						player1.addAttempt(row-1, column);
+					}
+					validInput = true;// if we got to this point without throwing an exception, then we can stop looping and pass the turn
 				}
-				else{
-					cout << e << endl;
+				catch (string e){
+					if (e == "Invalid Letter"){
+						cout << "That letter is not valid, please try a different letter" << endl;
+					}
+					else{
+						cout << e << endl;
+					}
+				}
+				catch(invalid_argument){
+					// good error message
 				}
 			}
-			catch(invalid_argument){
-				// good error message
+			if(currentTurn == "player1"){
+				currentTurn = "player2";
+			}
+			else{
+				currentTurn = "player1";
 			}
 		}
-		if(currentTurn == "player1"){
-			currentTurn = "player2";
+		if(player1.isGameOver()){
+			cout << "Congratulations Player 2! You win!" << endl;
 		}
-		else{
-			currentTurn = "player1";
+		else {
+			cout << "congratulations Player 1! You win!" << endl;
 		}
 	}
-	if(player1.isGameOver()){
-		cout << "Congratulations Player 2! You win!" << endl;
-	}
-	else {
-		cout << "congratulations Player 1! You win!" << endl;
+	else{
+		bool ** tableOfShips = player1.getTableOfShips();
+		BattleBot Bot(tableOfShips , setUpObject.getDif());
+		cout << "Hello " + currentTurn + "! Here are the attempts you've made on your opponent's board" << endl;
+			if(currentTurn == "player1"){
+				player2.printEnemyPhase();
+				if(isStarted)
+				{
+					if(player1.isHit(row-1, column))
+					{
+						cout << "\n\nYour opponent landed a hit! \n";
+					}
+					else
+					{
+						cout << "\n\nYour opponent missed. \n";
+					}
+				}
+				cout << "Here is your board:\n";
+				player1.printPlayerPhase();
+					isStarted = 1;
+					validInput = false;
+				while(validInput == false){
+					try{
+						cout << "What column do you want to shoot at?" << endl;
+						cin >> columnLetter;
+						column = SetUp::lettersToNumbers(columnLetter);
+						cout << "What row do you want to shoot at?" << endl;
+						cin >> rowString;
+						if(stoi(rowString) < 10 && stoi(rowString) > 0){// This is for input sanitization
+							row = stoi(rowString);
+						}
+						else{
+							throw string("Row out of bounds");
+						}
+						player2.addAttempt(row-1, column);
+						validInput = true;// if we got to this point without throwing an exception, then we can stop looping and pass the turn
+					}
+					catch (string e){
+						if (e == "Invalid Letter"){
+							cout << "That letter is not valid, please try a different letter" << endl;
+						}
+						else{
+							cout << e << endl;
+						}
+					}
+					catch(invalid_argument){
+						// good error message
+					}
+				}
+			}
+			else{
+				//where the bots turn goes
+			}
+			
+			if(currentTurn == "player1"){
+				currentTurn = "player2";
+			}
+			else{
+				currentTurn = "player1";
+			}
 	}
 }

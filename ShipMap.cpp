@@ -20,6 +20,7 @@ ShipMap::ShipMap() // initializes the arrays with 0s
 			attempts[i][j] = 0;
 		}
 	}
+	
 }
 
 ShipMap::~ShipMap()
@@ -291,4 +292,19 @@ bool ShipMap::isShipDirectionGood(int row, int col, int shipSize, char shipDirec
 		}
 	}
 	return(itWorks);
+}
+
+
+bool ** ShipMap::getTableOfShips(){
+	bool ** returnShips;
+	returnShips = new bool*[9];
+	for(int i = 0; i < 9; i++)
+	{
+		returnShips[i] = new bool[10];
+		for(int j = 0; j < 10; j++)
+		{
+			returnShips[i][j] = ships[i][j];
+		}
+	}
+	return returnShips;
 }

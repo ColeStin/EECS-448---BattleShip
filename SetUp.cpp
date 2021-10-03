@@ -7,7 +7,7 @@ SetUp::SetUp(){
 	string rowString, colString;
 	string emptyString;
 	againstAI = false;
-	int difficulty = 0;
+	difficulty = 0;
 	bool valid_input = false;
 
 	cout << "Welcome to Battleship!" << endl;
@@ -33,7 +33,7 @@ SetUp::SetUp(){
 				cout<<endl<<"Which difficulty would you like your opponent to be?: "<<endl<<endl;
 				cout<<"  1 : Easy"<<endl<<"  2 : Medium"<<endl<<"  3 : Hard"<<endl<<endl<<"Please enter 1, 2 or 3: ";
 				cin>>difficulty;
-			}while(difficulty >0 && difficulty<4);
+			}while(difficulty <1 && difficulty > 3);
 		}else if(mode == 2){
 			againstAI = false;
 		}
@@ -234,4 +234,6 @@ string SetUp::getPlaystyle()
 	}
 	
 }
-	
+int SetUp::getDif(){
+	return difficulty;
+}
