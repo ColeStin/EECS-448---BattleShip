@@ -110,8 +110,8 @@ int main(){
 		while (!player1.isGameOver() && !player2.isGameOver()){
 			bool ** tableOfShips = player1.getTableOfShips();
 			BattleBot Bot(tableOfShips , setUpObject.getDif());
-			cout << "Hello " + currentTurn + "! Here are the attempts you've made on your opponent's board" << endl;
 				if(currentTurn == "player1"){
+					cout << "Hello " + currentTurn + "! Here are the attempts you've made on your opponent's board" << endl;
 					player2.printEnemyPhase();
 					if(isStarted)
 					{

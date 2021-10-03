@@ -5,12 +5,16 @@ using namespace std;
 
 BattleBot::BattleBot(bool ** opShips, int dif){
     
+    cout<<"I have the enemy board :)  -> ";
     for(int i = 0; i < 9; i++)
 	{
+        cout<<endl;
 		for(int j = 0; j < 10; j++)
 		{
 			opponentsShips[i][j] = opShips[i][j];
+            cout<<opponentsShips[i][j];
 		}
+        
 	}
     difficulty = dif;
 
@@ -52,5 +56,20 @@ int * BattleBot::mediumShot(){
  
 int * BattleBot::hardShot(){
     int * shot;
+    for(int i = 0; i < 9; i++)
+	{
+		for(int j = 0; j < 10; j++)
+		{
+            if(opponentsShips[i][j] == 1){
+                opponentsShips[i][j] = 0;
+                shot[0] = i;
+                shot[1] = j;
+                cout<<shot;
+                return shot;
+            }
+		}
+        
+	}
     return shot;
+    
 }
