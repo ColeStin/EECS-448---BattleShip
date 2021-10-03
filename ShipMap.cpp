@@ -40,14 +40,11 @@ bool ShipMap::isHit(int row, int col) // returns 1 if a ship has been hit
 	}
 }
 
-void ShipMap::addShip(int row, int col, int shipSize) // Adds a ship to the ship array
+bool ShipMap::addShip(int row, int col, int shipSize, char direction) // Adds a ship to the ship array
 {
 	bool shipIsGood = 0; // used to end while loop
-	char shipDirection = 'a';
 	bool isDirectionGood = 0;
-	while(shipIsGood == 0)
-	{
-		try
+	try
 		{
 			if(ships[row][col] == 1) // throws an error when ship is already in initial space
 			{
@@ -57,74 +54,73 @@ void ShipMap::addShip(int row, int col, int shipSize) // Adds a ship to the ship
 			{
 				ships[row][col] = 1;
 				lives++; // whenever a ship is added the player gains a life
-				shipIsGood = 1;
+				return true;
 			}
 			else
 			{
-				cout << "Which direction would you like the ship to face? Left, Right, Up, or Down? (Please enter L, R, U, or D)\n";
-				cin >> shipDirection;
-				if(shipDirection != 'L' && shipDirection != 'R' && shipDirection != 'U' && shipDirection != 'D') // check for good input
-				{
-					throw string("Please enter either L, R, U, or D");
-				}
-				else
-				{
-					isDirectionGood = isShipDirectionGood(row, col, shipSize, shipDirection);
+				isDirectionGood = isShipDirectionGood(row, col, shipSize, direction);
 					if(isDirectionGood == 1) // will only run if ship can be placed in that direction
 					{
-						if(shipDirection == 'L')
+						if(direction == 'L')
 						{
 							for(int i = 0; i < shipSize; i++)
 							{
 								ships[row][col-i] = 1;
 								lives++;
 							}
-							shipIsGood = 1;
+							return true;
 						}
-						if(shipDirection == 'R')
+						if(direction == 'R')
 						{
 							for(int i = 0; i < shipSize; i++)
 							{
 								ships[row][col+i] = 1;
 								lives++;
 							}
-							shipIsGood = 1;
+							return true;
 						}
-						if(shipDirection == 'U')
+						if(direction == 'U')
 						{
 							for(int i = 0; i < shipSize; i++)
 							{
 								ships[row-i][col] = 1;
 								lives++;
 							}
-							shipIsGood = 1;
+							return true;
 						}
-						if(shipDirection == 'D')
+						if(direction == 'D')
 						{
 							for(int i = 0; i < shipSize; i++)
 							{
 								ships[row+i][col] = 1;
 								lives++;
 							}
-							shipIsGood = 1;
+							return true;
 						}
 					}
 					else
 					{
 						if(isShipDirectionGood(row, col, shipSize, 'L') == 0 && isShipDirectionGood(row, col, shipSize, 'R') == 0 && isShipDirectionGood(row, col, shipSize, 'U') == 0 && isShipDirectionGood(row, col, shipSize, 'D') == 0)
 						{
+							cout<<"Here"<<endl;
 							throw string("The ship is off the grid; please try again.");
+							
+						}
+						else{
+							cout<<"Invalid direction, please select different direciton."<<endl;
+							return false;
 						}
 						// throw string("This Direction doesn't work. please choose another");
+						
 					}
-				}
 			}
 		}
 		catch(string invalid_argument)
 		{
 			cout<<invalid_argument<<endl;
+			return false;
 		}
-	}
+		return false;
 }
 
 void ShipMap::addAttempt(int row, int col) // Adds an attempt to the attempt array
@@ -290,6 +286,9 @@ bool ShipMap::isShipDirectionGood(int row, int col, int shipSize, char shipDirec
 				}
 			}
 		}
+	}
+	if(!itWorks){
+		cout<<"It doesnt work"<<endl;
 	}
 	return(itWorks);
 }

@@ -17,7 +17,7 @@ int main(){
 	SetUp setUpObject;
 	player1 = setUpObject.returnMap(1);
 	player2 = setUpObject.returnMap(2);
-	
+	player2.addShip(1, 2, 3, 'D');
 	string currentTurn = "player1";
 	string columnLetter, rowString;
 	int column, row;
@@ -107,64 +107,73 @@ int main(){
 		}
 	}
 	else{
-		bool ** tableOfShips = player1.getTableOfShips();
-		BattleBot Bot(tableOfShips , setUpObject.getDif());
-		cout << "Hello " + currentTurn + "! Here are the attempts you've made on your opponent's board" << endl;
-			if(currentTurn == "player1"){
-				player2.printEnemyPhase();
-				if(isStarted)
-				{
-					if(player1.isHit(row-1, column))
+		while (!player1.isGameOver() && !player2.isGameOver()){
+			bool ** tableOfShips = player1.getTableOfShips();
+			BattleBot Bot(tableOfShips , setUpObject.getDif());
+			cout << "Hello " + currentTurn + "! Here are the attempts you've made on your opponent's board" << endl;
+				if(currentTurn == "player1"){
+					player2.printEnemyPhase();
+					if(isStarted)
 					{
-						cout << "\n\nYour opponent landed a hit! \n";
+						if(player1.isHit(row-1, column))
+						{
+							cout << "\n\nYour opponent landed a hit! \n";
+						}
+						else
+						{
+							cout << "\n\nYour opponent missed. \n";
+						}
 					}
-					else
-					{
-						cout << "\n\nYour opponent missed. \n";
+					cout << "Here is your board:\n";
+					player1.printPlayerPhase();
+						isStarted = 1;
+						validInput = false;
+					while(validInput == false){
+						try{
+							cout << "What column do you want to shoot at?" << endl;
+							cin >> columnLetter;
+							column = SetUp::lettersToNumbers(columnLetter);
+							cout << "What row do you want to shoot at?" << endl;
+							cin >> rowString;
+							if(stoi(rowString) < 10 && stoi(rowString) > 0){// This is for input sanitization
+								row = stoi(rowString);
+							}
+							else{
+								throw string("Row out of bounds");
+							}
+							player2.addAttempt(row-1, column);
+							validInput = true;// if we got to this point without throwing an exception, then we can stop looping and pass the turn
+						}
+						catch (string e){
+							if (e == "Invalid Letter"){
+								cout << "That letter is not valid, please try a different letter" << endl;
+							}
+							else{
+								cout << e << endl;
+							}
+						}
+						catch(invalid_argument){
+							// good error message
+						}
 					}
 				}
-				cout << "Here is your board:\n";
-				player1.printPlayerPhase();
-					isStarted = 1;
-					validInput = false;
-				while(validInput == false){
-					try{
-						cout << "What column do you want to shoot at?" << endl;
-						cin >> columnLetter;
-						column = SetUp::lettersToNumbers(columnLetter);
-						cout << "What row do you want to shoot at?" << endl;
-						cin >> rowString;
-						if(stoi(rowString) < 10 && stoi(rowString) > 0){// This is for input sanitization
-							row = stoi(rowString);
-						}
-						else{
-							throw string("Row out of bounds");
-						}
-						player2.addAttempt(row-1, column);
-						validInput = true;// if we got to this point without throwing an exception, then we can stop looping and pass the turn
+				else{  //where the bots turn goes
+
+					int * target = Bot.selectTarget();
+					cout<<"Target Coordinates: ";
+					for(int x = 0; x<2;x++){
+						cout<<target[x]<<" ";
 					}
-					catch (string e){
-						if (e == "Invalid Letter"){
-							cout << "That letter is not valid, please try a different letter" << endl;
-						}
-						else{
-							cout << e << endl;
-						}
-					}
-					catch(invalid_argument){
-						// good error message
-					}
+					cout<<endl;
+					
 				}
-			}
-			else{
-				//where the bots turn goes
-			}
-			
-			if(currentTurn == "player1"){
-				currentTurn = "player2";
-			}
-			else{
-				currentTurn = "player1";
-			}
+				
+				if(currentTurn == "player1"){
+					currentTurn = "player2";
+				}
+				else{
+					currentTurn = "player1";
+				}
+		}
 	}
 }

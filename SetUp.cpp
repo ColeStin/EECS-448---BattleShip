@@ -4,6 +4,7 @@ using namespace std;
 
 SetUp::SetUp(){
 	int row, col, ships;
+	char direction;
 	string rowString, colString;
 	string emptyString;
 	againstAI = false;
@@ -37,7 +38,6 @@ SetUp::SetUp(){
 		}else if(mode == 2){
 			againstAI = false;
 		}
-		cout <<mode;
 	}while(mode != 1 && mode != 2);
 	
 	if(againstAI == false){
@@ -45,60 +45,83 @@ SetUp::SetUp(){
 			cout << "Hello Player " << playerNum << "!" << endl;
 			for (int i =1; i<=ships; i++){
 				if(playerNum == 1){
-						player1Map.printPlayerPhase();
-					}
-					else{
+					player1Map.printPlayerPhase();
+				}
+				else{
 					player2Map.printPlayerPhase();
 				}
 				valid_input = false;
 				while(valid_input == false){
 					try{
 						cout << "Enter the starting position of your 1x" << i << " ship. \nColumn:";
-							cin >> colString;
+						cin >> colString;
+
 						col = SetUp::lettersToNumbers(colString);
 							cout << "Row: ";
 						cin >> rowString;
+
 						row = stoi(rowString);// throws an invalid_argument exception when it fails;
+						
 						if(row < 1 || row > 9){
 							throw string("Out of Bounds");
 						}
-						if(playerNum == 1){
-							player1Map.addShip(row-1, col, i);
-							cout << "Type any character and hit enter to turn over screen to Player 2";
-							cin >> emptyString;
-							for(int n = 0; n < 10; n++){
-								cout << "\n";
-								cout << "\n";
-								cout << "\n";
-								cout << "\n";
-								cout << "\n";
-								cout << "\n";
-								cout << "\n";
-								cout << "\n";
-								cout << "\n";
-								cout << "\n";
+
+						bool correct = true;
+						do{
+							cout << "Which direction would you like the ship to face? Left, Right, Up, or Down? (Please enter L, R, U, or D)\n";
+							cin >> direction;
+							if(direction != 'L' && direction != 'R' && direction != 'U' && direction != 'D') // check for good input
+							{
+								cout<<"Please enter the correct letter..."<<endl;
+								correct = false;
 							}
-						}
-						else{
-							player2Map.addShip(row-1, col, i);
-							cout << "Type any character and hit enter to turn over screen to Player 1";
-							cin >> emptyString;
-							for(int n = 0; n < 10; n++){
-								cout << "\n";
-								cout << "\n";
-								cout << "\n";
-								cout << "\n";
-								cout << "\n";
-								cout << "\n";
-								cout << "\n";
-								cout << "\n";
-								cout << "\n";
-								cout << "\n";
+							if(playerNum == 1){
+								valid_input = player1Map.addShip(row-1, col, i, direction);
+								if(valid_input){
+									cout << "Type any character and hit enter to turn over screen to Player 2";
+									cin >> emptyString;
+									for(int n = 0; n < 10; n++){
+										cout << "\n";
+										cout << "\n";
+										cout << "\n";
+										cout << "\n";
+										cout << "\n";
+										cout << "\n";
+										cout << "\n";
+										cout << "\n";
+										cout << "\n";
+										cout << "\n";
+									}
+								}
+								
 							}
-						}
-						valid_input = true;// This line will only be reached if we don't throw an exception
+							else{
+									valid_input = player2Map.addShip(row-1, col, i, direction);
+									if(valid_input){
+									cout << "Type any character and hit enter to turn over screen to Player 2";
+									cin >> emptyString;
+									for(int n = 0; n < 10; n++){
+										cout << "\n";
+										cout << "\n";
+										cout << "\n";
+										cout << "\n";
+										cout << "\n";
+										cout << "\n";
+										cout << "\n";
+										cout << "\n";
+										cout << "\n";
+										cout << "\n";
+									}
+								}
+								}
+						}while(!valid_input);
+
+
+
+						
+						// This line will only be reached if we don't throw an exception
 					}
-						catch (string e){
+					catch (string e){
 						if(e == "Out of Bounds"){
 							cout << "That number is not a row number, please try again!\n" << endl;
 						}
@@ -127,29 +150,41 @@ SetUp::SetUp(){
 				while(valid_input == false){
 					try{
 						cout << "Enter the starting position of your 1x" << i << " ship. \nColumn:";
-							cin >> colString;
+						cin >> colString;
 						col = SetUp::lettersToNumbers(colString);
-							cout << "Row: ";
+	
+						cout << "Row: ";
 						cin >> rowString;
+
 						row = stoi(rowString);// throws an invalid_argument exception when it fails;
 						if(row < 1 || row > 9){
 							throw string("Out of Bounds");
 						}
-						player1Map.addShip(row-1, col, i);
-							cout << "Type any character and hit enter";
-							cin >> emptyString;
-							for(int n = 0; n < 10; n++){
-								cout << "\n";
-								cout << "\n";
-								cout << "\n";
-								cout << "\n";
-								cout << "\n";
-								cout << "\n";
-								cout << "\n";
-								cout << "\n";
-								cout << "\n";
-								cout << "\n";
+
+						do{
+							cout << "Which direction would you like the ship to face? Left, Right, Up, or Down? (Please enter L, R, U, or D)\n";
+							cin >> direction;
+							if(direction != 'L' && direction != 'R' && direction != 'U' && direction != 'D') // check for good input
+							{
+								cout<<"Please enter the correct letter..."<<endl;
 							}
+						}while(!player1Map.addShip(row-1, col, i, direction));
+
+						
+						cout << "Type any character and hit enter";
+						cin >> emptyString;
+						for(int n = 0; n < 10; n++){
+							cout << "\n";
+							cout << "\n";
+							cout << "\n";
+							cout << "\n";
+							cout << "\n";
+							cout << "\n";
+							cout << "\n";
+							cout << "\n";
+							cout << "\n";
+							cout << "\n";
+						}
 						valid_input = true;// This line will only be reached if we don't throw an exception
 					}
 						catch (string e){

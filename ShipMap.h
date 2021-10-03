@@ -54,8 +54,10 @@ class ShipMap
 	/// @param row coordinate 
 	/// @param col coordinate 
 	/// @param shipSize size of ship to be added
+	/// @param direction direction of the ship
 	/// @post Adds a ship to the ship array
-	void addShip(int row, int col, int shipSize);
+	/// @return returns whether the ship was able to be added or not
+ 	bool addShip(int row, int col, int shipSize, char direction);
 
 	/// add attempt
 	///

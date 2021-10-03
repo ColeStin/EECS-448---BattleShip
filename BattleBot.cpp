@@ -32,12 +32,13 @@ int * BattleBot::selectTarget(){
     else if(difficulty ==3){
         target = hardShot();
     }
+    
     return target;
 }
 
 // need to add 
 int * BattleBot::easyShot(){
-    int shot[2]; 
+    int * shot; 
     shot[0] = rand() % 9;
     shot[1] = rand() % 10;
     return shot;
@@ -45,9 +46,11 @@ int * BattleBot::easyShot(){
 }
 
 int * BattleBot::mediumShot(){
-
+    int * shot;
+    return shot;     
 }
  
 int * BattleBot::hardShot(){
-
+    int * shot;
+    return shot;
 }
