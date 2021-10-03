@@ -42,8 +42,12 @@ class BattleBot
     int * mediumShot();
 
     ///fires at a ship
-    ///@post returns an array of row and col for a shot to be taken
+    ///@post returns an array of row and col for a shot to be takes
     int * hardShot();
+
+    //fires at a ship
+    ///@post returns an array of row and col for a shot to be taken
+    int * randomSpace();
     bool opponentsShips[9][10];
     bool firedSpots[9][10];
     int difficulty;

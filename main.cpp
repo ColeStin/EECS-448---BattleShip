@@ -107,9 +107,9 @@ int main(){
 		}
 	}
 	else{
+		bool ** tableOfShips = player1.getTableOfShips();
+		BattleBot Bot(tableOfShips , setUpObject.getDif());
 		while (!player1.isGameOver() && !player2.isGameOver()){
-			bool ** tableOfShips = player1.getTableOfShips();
-			BattleBot Bot(tableOfShips , setUpObject.getDif());
 				if(currentTurn == "player1"){
 					cout << "Hello " + currentTurn + "! Here are the attempts you've made on your opponent's board" << endl;
 					player2.printEnemyPhase();
@@ -158,11 +158,23 @@ int main(){
 					}
 				}
 				else{  //where the bots turn goes
-
+					cout<<"Here"<<endl;
 					int * target = Bot.selectTarget();
-					cout<<"Target Coordinates: ";
+
+					column = target[1];
+					row = target[0]+1;
+					cout<<"Bot Target Coordinates: ";
 					for(int x = 0; x<2;x++){
 						cout<<target[x]<<" ";
+					}
+					player1.addAttempt(row-1, column);
+					if(player1.isHit(row-1, column))
+						{
+							Bot.setHitMiss('h');
+					}
+					else
+					{
+						Bot.setHitMiss('m');
 					}
 					cout<<endl;
 					
@@ -174,6 +186,12 @@ int main(){
 				else{
 					currentTurn = "player1";
 				}
+		}
+		if(player1.isGameOver()){
+			cout << "Congratulations Player 2! You win!" << endl;
+		}
+		else {
+			cout << "congratulations Player 1! You win!" << endl;
 		}
 	}
 }
