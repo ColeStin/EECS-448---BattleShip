@@ -12,6 +12,7 @@
 using namespace std;
 
 int main(){
+	srand(time(0));
 	ShipMap player1;
 	ShipMap player2;
 	SetUp setUpObject;
@@ -158,17 +159,16 @@ int main(){
 					}
 				}
 				else{  //where the bots turn goes
-					cout<<"Here"<<endl;
+					//cout<<"Here in Main.cpp"<<endl;
 					int * target = Bot.selectTarget();
-
 					column = target[1];
-					row = target[0]+1;
+					row = target[0];
 					cout<<"Bot Target Coordinates: ";
 					for(int x = 0; x<2;x++){
 						cout<<target[x]<<" ";
 					}
-					player1.addAttempt(row-1, column);
-					if(player1.isHit(row-1, column))
+					player1.addAttempt(row, column);
+					if(player1.isHit(row, column))
 						{
 							Bot.setHitMiss('h');
 					}

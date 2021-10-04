@@ -45,15 +45,22 @@ class BattleBot
     ///@post returns an array of row and col for a shot to be takes
     int * hardShot();
 
+    ///@param row row to check
+    ///@param col column to check
+    ///@post returns whether a set of coordinates is in the board
+    bool withinBoard(int row, int col);
+
+
     //fires at a ship
     ///@post returns an array of row and col for a shot to be taken
     int * randomSpace();
     bool opponentsShips[9][10];
-    bool firedSpots[9][10];
+    bool shotMatrix[9][10];
     int difficulty;
     char currentDirection; //the direction the bot thinks the ship is facing
+    int newShip[2];
+    int previousShot[2];
     char hitOrMiss;
-
 };
 
 #endif
