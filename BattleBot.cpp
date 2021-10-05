@@ -75,8 +75,6 @@ int * BattleBot::mediumShot(){
     }
     else if( hitOrMiss == 'm' && currentDirection != '\n'){
         cout<<"miss with direction"<<endl;
-        ///done
-
         if(currentDirection == 'u'){
                 
             if(withinBoard(newShip[0]+1, newShip[1]) == true && shotMatrix[newShip[0]+1][newShip[1]] == 0){
@@ -91,7 +89,7 @@ int * BattleBot::mediumShot(){
                     shot[1] = newShip[1]+1;
                 }
                 else{
-                    if(withinBoard(newShip[0], newShip[1]=1) == true && shotMatrix[newShip[0]][newShip[1]-1] == 0){
+                    if(withinBoard(newShip[0], newShip[1]+1) == true && shotMatrix[newShip[0]][newShip[1]-1] == 0){
                         currentDirection = 'l';
                         shot[0] = newShip[0];
                         shot[1] = newShip[1]-1;
@@ -110,7 +108,7 @@ int * BattleBot::mediumShot(){
                     shot[1] = newShip[1]+1;
                 }
                 else{
-                    if(withinBoard(newShip[0], newShip[1]=1) == true && shotMatrix[newShip[0]][newShip[1]-1] == 0){
+                    if(withinBoard(newShip[0], newShip[1]+1) == true && shotMatrix[newShip[0]][newShip[1]-1] == 0){
                         currentDirection = 'l';
                         shot[0] = newShip[0];
                         shot[1] = newShip[1]-1;
@@ -121,8 +119,8 @@ int * BattleBot::mediumShot(){
                     }
                 }
         }
-        else if(currentDirection = 'r'){
-            if(withinBoard(newShip[0], newShip[1]=1) == true && shotMatrix[newShip[0]][newShip[1]-1] == 0){
+        else if(currentDirection == 'r'){
+            if(withinBoard(newShip[0], newShip[1]+1) == true && shotMatrix[newShip[0]][newShip[1]-1] == 0){
                 currentDirection = 'l';
                 shot[0] = newShip[0];
                 shot[1] = newShip[1]-1;
@@ -132,7 +130,7 @@ int * BattleBot::mediumShot(){
                 shot = randomSpace();
             }
         }
-        else if(currentDirection = 'l'){
+        else if(currentDirection == 'l'){
             currentDirection = '\n';
             shot = randomSpace();
         }
@@ -176,25 +174,25 @@ int * BattleBot::mediumShot(){
         cout<<"hit with direction"<<endl;
         if(currentDirection == 'u'){
             if(withinBoard(previousShot[0]-1, previousShot[1]) == true && shotMatrix[previousShot[0]-1][previousShot[1]] == 0){
-                shot[0] == previousShot[0] - 1;
-                shot[1] == previousShot[1];
+                shot[0] = previousShot[0] - 1;
+                shot[1] = previousShot[1];
             }else{
                 if(withinBoard(newShip[0]+1, newShip[1]) && shotMatrix[newShip[0]+1][newShip[1]] == 0){
                     currentDirection = 'd';
-                    shot[0] == newShip[0] + 1;
-                    shot[1] == newShip[1];
+                    shot[0] = newShip[0] + 1;
+                    shot[1] = newShip[1];
                 }
                 else{
                     currentDirection = 'r';
                     if(withinBoard(newShip[0], newShip[1]+1) && shotMatrix[newShip[0]][newShip[1]+1] == 0){
-                        shot[0] == newShip[0];
-                        shot[1] == newShip[1]+1;
+                        shot[0] = newShip[0];
+                        shot[1] = newShip[1]+1;
                     }
                     else{
                         if(withinBoard(newShip[0], newShip[1]-1) && shotMatrix[newShip[0]][newShip[1]-1] == 0){
                             currentDirection = 'l';
-                            shot[0] == newShip[0];
-                            shot[1] == newShip[1]-1;
+                            shot[0] = newShip[0];
+                            shot[1] = newShip[1]-1;
                         }
                         else{
                             currentDirection = '\n';
@@ -203,23 +201,27 @@ int * BattleBot::mediumShot(){
                     }
                 }
             }
+            shotMatrix[shot[0]][shot[1]] = '1';
+            previousShot[0] = shot[0];
+            previousShot[1] = shot[1];
+            return shot;
             
         }
-        else if(currentDirection == 'd'){
+        if(currentDirection == 'd'){
             if(withinBoard(previousShot[0]+1, previousShot[1]) == true && shotMatrix[previousShot[0]+1][previousShot[1]] == 0){
-                shot[0] == previousShot[0] + 1;
-                shot[1] == previousShot[1];
+                shot[0] = previousShot[0] + 1;
+                shot[1] = previousShot[1];
             }else{
                 currentDirection = 'r';
                     if(withinBoard(newShip[0], newShip[1]+1) && shotMatrix[newShip[0]][newShip[1]+1] == 0){
-                        shot[0] == newShip[0];
-                        shot[1] == newShip[1]+1;
+                        shot[0] = newShip[0];
+                        shot[1] = newShip[1]+1;
                     }
                     else{
                         if(withinBoard(newShip[0], newShip[1]-1) && shotMatrix[newShip[0]][newShip[1]-1] == 0){
                             currentDirection = 'l';
-                            shot[0] == newShip[0];
-                            shot[1] == newShip[1]-1;
+                            shot[0] = newShip[0];
+                            shot[1] = newShip[1]-1;
                         }
                         else{
                             currentDirection = '\n';
@@ -227,33 +229,44 @@ int * BattleBot::mediumShot(){
                         }
                     }
             }
-            
+            shotMatrix[shot[0]][shot[1]] = '1';
+            previousShot[0] = shot[0];
+            previousShot[1] = shot[1];
+            return shot;
         }
-        else if(currentDirection == 'r'){
+        if(currentDirection == 'r'){
             if(withinBoard(previousShot[0], previousShot[1]+1) == true && shotMatrix[previousShot[0]][previousShot[1]+1] == 0){
-                shot[0] == previousShot[0];
-                shot[1] == previousShot[1]+1;
+                shot[0] = previousShot[0];
+                shot[1] = previousShot[1]+1;
             }else{
                 if(withinBoard(newShip[0], newShip[1]-1) && shotMatrix[newShip[0]][newShip[1]-1] == 0){
                     currentDirection = 'l';
-                    shot[0] == newShip[0];
-                    shot[1] == newShip[1]-1;
+                    shot[0] = newShip[0];
+                    shot[1] = newShip[1]-1;
                 }
                 else{
                     currentDirection = '\n';
                     shot = randomSpace();
                 }
             }
+            shotMatrix[shot[0]][shot[1]] = '1';
+            previousShot[0] = shot[0];
+            previousShot[1] = shot[1];
+            return shot;
             
         }
-        else if(currentDirection == 'l'){
+        if(currentDirection == 'l'){
             if(withinBoard(previousShot[0], previousShot[1]-1) == true && shotMatrix[previousShot[0]][previousShot[1]-1] == 0){
-                shot[0] == previousShot[0];
-                shot[1] == previousShot[1]-1;
+                shot[0] = previousShot[0];
+                shot[1] = previousShot[1]-1;
             }else{
                 currentDirection = '\n';
                 shot = randomSpace();
             }
+            shotMatrix[shot[0]][shot[1]] = '1';
+            previousShot[0] = shot[0];
+            previousShot[1] = shot[1];
+            return shot;
             
         }
     }
