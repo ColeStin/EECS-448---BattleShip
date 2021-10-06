@@ -25,6 +25,8 @@ int main(){
 	int column, row;
 	bool validInput;
 	bool isStarted = 0;
+	string specialshotinput;
+
 	if(setUpObject.getPlaystyle() == "PvP"){
 		while (!player1.isGameOver() && !player2.isGameOver()){// while neither player has lost the game
 		cout << string(1000, '\n');
@@ -68,6 +70,12 @@ int main(){
 					column = SetUp::lettersToNumbers(columnLetter);
 					cout << "What row do you want to shoot at?" << endl;
 					cin >> rowString;
+					cout<< "Would you like to use a special shot?"<<endl;
+					do 
+					{
+						cin>>specialshot;
+					}
+					while(specialshotinput!=Y,y,N,n);
 					if(stoi(rowString) < 10 && stoi(rowString) > 0){// This is for input sanitization
 						row = stoi(rowString);
 					}
