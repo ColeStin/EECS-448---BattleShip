@@ -73,7 +73,7 @@ int main(){
 					cout<< "Would you like to use a special shot?"<<endl;
 					do 
 					{
-						cin>>specialshot;
+						cin>>specialshotinput;
 					}
 					while(specialshotinput!=Y,y,N,n);
 					if(stoi(rowString) < 10 && stoi(rowString) > 0){// This is for input sanitization
