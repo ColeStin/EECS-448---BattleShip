@@ -16,10 +16,14 @@ SetUp::SetUp(){
 	cout << "How many ships do you want to play with?\n";
 	do
 	{
-		cin >> ships;
-    		if(ships < 1 || ships > 6){
-   			cout << "That is an invalid number of ships! Please try again.\n" << endl;
-   		}
+		while(!(cin >> ships)){
+			cout << "Type mismatch.\n";
+			cin.clear();
+			cin.ignore(1000, '\n');
+		}
+	 	if(ships < 1 || ships > 6){
+	 	cout << "That is an invalid number of ships! Please try again.\n" << endl;
+		}
 	}while(ships<1 || ships > 6);
 
 	cout << "What mode would you like to play with? :"<< endl<<endl;
@@ -28,19 +32,27 @@ SetUp::SetUp(){
 	int mode = 0;
 	do{
 		cout<<"Please enter 1 or 2 : ";
-		cin>>mode;
+		while(!(cin>>mode)){
+			cout << "Type mismatch.\n";
+			cin.clear();
+			cin.ignore(1000, '\n');
+		}
 		if(mode ==1){
 			againstAI = true;
 			do{
 				cout<<endl<<"Which difficulty would you like your opponent to be?: "<<endl<<endl;
 				cout<<"  1 : Easy"<<endl<<"  2 : Medium"<<endl<<"  3 : Hard"<<endl<<endl<<"Please enter 1, 2 or 3: ";
-				cin>>difficulty;
-			}while(difficulty <1 && difficulty > 3);
+				while(!(cin>>difficulty)){
+					cout << "Type mismatch.\n";
+					cin.clear();
+					cin.ignore(1000, '\n');
+				}
+			}while((difficulty != 1) && (difficulty != 2) && (difficulty != 3));
 		}else if(mode == 2){
 			againstAI = false;
 		}
 	}while(mode != 1 && mode != 2);
-	
+
 	if(againstAI == false){
 		for (int playerNum = 1; playerNum<=2; playerNum++){
 			cout << "Hello Player " << playerNum << "!" << endl;
@@ -62,7 +74,7 @@ SetUp::SetUp(){
 						cin >> rowString;
 
 						row = stoi(rowString);// throws an invalid_argument exception when it fails;
-						
+
 						if(row < 1 || row > 9){
 							throw string("Out of Bounds");
 						}
@@ -94,7 +106,7 @@ SetUp::SetUp(){
 										cout << "\n";
 									}
 								}
-								
+
 							}
 							else{
 									valid_input = player2Map.addShip(row-1, col, i, direction);
@@ -119,7 +131,7 @@ SetUp::SetUp(){
 
 
 
-						
+
 						// This line will only be reached if we don't throw an exception
 					}
 					catch (string e){
@@ -153,7 +165,7 @@ SetUp::SetUp(){
 						cout << "Enter the starting position of your 1x" << i << " ship. \nColumn:";
 						cin >> colString;
 						col = SetUp::lettersToNumbers(colString);
-	
+
 						cout << "Row: ";
 						cin >> rowString;
 
@@ -171,7 +183,7 @@ SetUp::SetUp(){
 							}
 						}while(!player1Map.addShip(row-1, col, i, direction));
 
-						
+
 						cout << "Type any character and hit enter";
 						cin >> emptyString;
 						for(int n = 0; n < 10; n++){
@@ -209,10 +221,10 @@ SetUp::SetUp(){
 			}
 		player2Map.autoAddShips(ships);
 	}
-	
+
 }
-	
-				
+
+
 ShipMap SetUp::returnMap(int player)
 {
 	if(player == 1)
@@ -269,7 +281,7 @@ string SetUp::getPlaystyle()
 	else{
 		return "PvP";
 	}
-	
+
 }
 int SetUp::getDif(){
 	return difficulty;
