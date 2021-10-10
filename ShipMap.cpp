@@ -20,7 +20,7 @@ ShipMap::ShipMap() // initializes the arrays with 0s
 			attempts[i][j] = 0;
 		}
 	}
-	
+
 }
 
 ShipMap::~ShipMap()
@@ -104,14 +104,14 @@ bool ShipMap::addShip(int row, int col, int shipSize, char direction) // Adds a 
 						{
 							cout<<"Here"<<endl;
 							throw string("The ship is off the grid; please try again.");
-							
+
 						}
 						else{
 							cout<<"Invalid direction, please select different direciton."<<endl;
 							return false;
 						}
 						// throw string("This Direction doesn't work. please choose another");
-						
+
 					}
 			}
 		}
@@ -126,7 +126,7 @@ bool ShipMap::addShip(int row, int col, int shipSize, char direction) // Adds a 
 void ShipMap::addAttempt(int row, int col) // Adds an attempt to the attempt array
 {
 	bool attemptIsGood = 0;
-	while (attemptIsGood == 0) 
+	while (attemptIsGood == 0)
 	{
 		if(attempts[row][col] == 0)
 		{
@@ -134,7 +134,7 @@ void ShipMap::addAttempt(int row, int col) // Adds an attempt to the attempt arr
 			if(isHit(row, col))
 			{
 				lives--;
-				cout << "HIT! \n"; 
+				cout << "HIT! \n";
 			}
 			else
 			{
@@ -144,11 +144,74 @@ void ShipMap::addAttempt(int row, int col) // Adds an attempt to the attempt arr
 		}
 		else
 		{
-			// prompts user to reenter coordinates 
+			// prompts user to reenter coordinates
 			throw string("You have already shot that square, please try again.");
 		}
 	}
 }
+
+void ShipMap::addSpecialAttempt(int row, int col) // Adds an attempt to the attempt array
+{
+	attempts[row][col] = 1;
+	if(isHit(row, col))
+	{
+		lives--;
+		cout << "HIT! \n";
+	}
+	else
+	{
+		cout << "Miss. \n";
+	}
+	if(((row+1) >= 0) & ((row+1) < 9)){
+		attempts[row+1][col] = 1;
+		if(isHit((row+1), col))
+		{
+			lives--;
+			cout << "HIT! \n";
+		}
+		else
+		{
+			cout << "Miss. \n";
+		}
+	}
+	if(((row-1) >= 0) & ((row-1) < 9)){
+		attempts[row-1][col] = 1;
+		if(isHit((row-1), col))
+		{
+			lives--;
+			cout << "HIT! \n";
+		}
+		else
+		{
+			cout << "Miss. \n";
+		}
+	}
+	if(((col+1) >= 0) & ((col+1) < 10)){
+		attempts[row][col+1] = 1;
+		if(isHit(row, (col+1)))
+		{
+			lives--;
+			cout << "HIT! \n";
+		}
+		else
+		{
+			cout << "Miss. \n";
+		}
+	}
+	if(((col-1) >= 0) & ((col-1) < 10)){
+		attempts[row][col-1] = 1;
+		if(isHit(row, (col-1)))
+		{
+			lives--;
+			cout << "HIT! \n";
+		}
+		else
+		{
+			cout << "Miss. \n";
+		}
+	}
+}
+
 
 void ShipMap::printPlayerPhase() // prints the grid showing information during player phase
 {
@@ -160,7 +223,7 @@ void ShipMap::printPlayerPhase() // prints the grid showing information during p
 		{
 			if(ships[i][j] == 1 && attempts[i][j] == 1) // prints a hit
 			{
-				cout << "X "; 
+				cout << "X ";
 			}
 			else if(ships[i][j] == 1 && attempts[i][j] == 0) // prints an untouched ship
 			{
@@ -189,7 +252,7 @@ void ShipMap::printEnemyPhase() // prints the grid showing information during en
 		{
 			if(ships[i][j] == 1 && attempts[i][j] == 1) // prints a hit
 			{
-				cout << "X "; 
+				cout << "X ";
 			}
 			else if(ships[i][j] == 0 && attempts[i][j] == 1) // prints a miss
 			{
