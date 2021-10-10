@@ -4,7 +4,7 @@
 using namespace std;
 
 BattleBot::BattleBot(bool ** opShips, int dif){
-    
+
     for(int i = 0; i < 9; i++)
 	{
 		for(int j = 0; j < 10; j++)
@@ -12,7 +12,7 @@ BattleBot::BattleBot(bool ** opShips, int dif){
 			opponentsShips[i][j] = opShips[i][j];
             shotMatrix[i][j] = 0;
 		}
-        
+
 	}
     difficulty = dif;
     hitOrMiss = 'm';
@@ -40,11 +40,11 @@ int * BattleBot::selectTarget(){
     return target;
 }
 
-// need to add 
+// need to add
 int * BattleBot::easyShot(){
     int * shot = randomSpace();
     return shot;
-    
+
 
 
 }
@@ -54,11 +54,11 @@ int * BattleBot::mediumShot(){
     shot = new int[2];
     shot[0] = 0;
     shot[1] = 0;
-    //Process the bot should follow 
+    //Process the bot should follow
     //check whether previous shot was a hit or a miss
     //if it was a miss and there was no direction, generate random location, and reset current direction to null
     //if it was a miss with direciton, switch direciton (rotate it clockwise) and fire shot
-    //if it was a hit, check direciton and check 
+    //if it was a hit, check direciton and check
     //if direction is null, start at the top
 
     //key for directions
@@ -76,7 +76,7 @@ int * BattleBot::mediumShot(){
     else if( hitOrMiss == 'm' && currentDirection != '\n'){
         cout<<"miss with direction"<<endl;
         if(currentDirection == 'u'){
-                
+
             if(withinBoard(newShip[0]+1, newShip[1]) == true && shotMatrix[newShip[0]+1][newShip[1]] == 0){
                 currentDirection = 'd';
                 shot[0] = newShip[0]+1;
@@ -134,7 +134,7 @@ int * BattleBot::mediumShot(){
             currentDirection = '\n';
             shot = randomSpace();
         }
-        
+
     }
     else if (hitOrMiss == 'h' && currentDirection =='\n')
     {
@@ -142,12 +142,12 @@ int * BattleBot::mediumShot(){
         cout<<"hit with no direction"<<endl;
         newShip[0] = previousShot[0];
         newShip[1] = previousShot[1];
-        
+
         if(withinBoard(previousShot[0]-1, previousShot[1]) && shotMatrix[previousShot[0] - 1][previousShot[1]] == 0){
             currentDirection = 'u';
             shot[0] = previousShot[0] - 1;
             shot[1] = previousShot[1];
-            
+
         }
         else if(withinBoard(previousShot[0]+1, previousShot[1]) && shotMatrix[previousShot[0] + 1][previousShot[1]] == 0){
             currentDirection = 'd';
@@ -167,7 +167,7 @@ int * BattleBot::mediumShot(){
         else{
             shot = randomSpace();
         }
-        
+
     }
     else if(hitOrMiss == 'h' && currentDirection != '\n'){
         //done
@@ -205,7 +205,7 @@ int * BattleBot::mediumShot(){
             previousShot[0] = shot[0];
             previousShot[1] = shot[1];
             return shot;
-            
+
         }
         if(currentDirection == 'd'){
             if(withinBoard(previousShot[0]+1, previousShot[1]) == true && shotMatrix[previousShot[0]+1][previousShot[1]] == 0){
@@ -253,7 +253,7 @@ int * BattleBot::mediumShot(){
             previousShot[0] = shot[0];
             previousShot[1] = shot[1];
             return shot;
-            
+
         }
         if(currentDirection == 'l'){
             if(withinBoard(previousShot[0], previousShot[1]-1) == true && shotMatrix[previousShot[0]][previousShot[1]-1] == 0){
@@ -267,7 +267,7 @@ int * BattleBot::mediumShot(){
             previousShot[0] = shot[0];
             previousShot[1] = shot[1];
             return shot;
-            
+
         }
     }
 
@@ -276,9 +276,9 @@ int * BattleBot::mediumShot(){
     shotMatrix[shot[0]][shot[1]] = '1';
     previousShot[0] = shot[0];
     previousShot[1] = shot[1];
-    return shot;     
+    return shot;
 }
- 
+
 int * BattleBot::hardShot(){
     int * shot;
     shot = new int[2];
@@ -293,10 +293,10 @@ int * BattleBot::hardShot(){
                 return shot;
             }
 		}
-        
+
 	}
     return shot;
-    
+
 }
 
 int * BattleBot::randomSpace(){
@@ -316,7 +316,8 @@ int * BattleBot::randomSpace(){
         else{
             alreadyShotAt = false;
         }
-    }while(alreadyShotAt == true); 
+    }while(alreadyShotAt == true);
+    shotMatrix[target[0]][target[1]] = 1;
     cout<<"Column shot: "<<target[1]+1<<"   Row Shot: "<<target[0]+1<<endl;
     return target;
 }
@@ -330,4 +331,3 @@ bool BattleBot::withinBoard(int row, int col){
     }
     return false;
 }
-
