@@ -400,3 +400,7 @@ bool ** ShipMap::getTableOfShips(){
 	}
 	return returnShips;
 }
+
+int ShipMap::getLives(){
+	return(lives);
+}

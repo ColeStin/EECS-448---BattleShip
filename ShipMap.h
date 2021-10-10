@@ -109,6 +109,14 @@ class ShipMap
 	///@return returns array of ship placement
 	bool ** getTableOfShips();
 
+	///get Lives
+	///
+	///this function returns how many lives a player has
+	///@param None
+	///@post None
+	///@return Number of lives a player has
+	int getLives();
+
 	private:
 	bool ships[9][10];
 	bool attempts[9][10];

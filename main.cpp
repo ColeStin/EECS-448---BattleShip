@@ -27,6 +27,7 @@ int main(){
 	bool isStarted = 0;
 	string specialshotinput1;
 	string specialshotinput2;
+	int currentLivesAI;
 
 	if(setUpObject.getPlaystyle() == "PvP"){
 		while (!player1.isGameOver() && !player2.isGameOver()){// while neither player has lost the game
@@ -140,20 +141,28 @@ int main(){
 	else{
 		bool ** tableOfShips = player1.getTableOfShips();
 		BattleBot Bot(tableOfShips , setUpObject.getDif());
+		currentLivesAI = player1.getLives();
 		while (!player1.isGameOver() && !player2.isGameOver()){
 				if(currentTurn == "player1"){
 					cout << "Hello " + currentTurn + "! Here are the attempts you've made on your opponent's board" << endl;
 					player2.printEnemyPhase();
-					if(isStarted)
-					{
-						if(player1.isHit(row-1, column))
-						{
-							cout << "\n\nYour opponent landed a hit! \n";
-						}
-						else
-						{
-							cout << "\n\nYour opponent missed. \n";
-						}
+					if(isStarted){
+					if(player1.getLives() < currentLivesAI){
+						cout << "\n\nYour opponent landed a hit! \n";
+						currentLivesAI = player1.getLives();
+					}
+					else{
+						cout << "\n\nYour opponent missed. \n";
+					}
+					// {
+					// 	if(player1.isHit(row-1, column))
+					// 	{
+					// 		cout << "\n\nYour opponent landed a hit! \n";
+					// 	}
+					// 	else
+					// 	{
+					// 		cout << "\n\nYour opponent missed. \n";
+					// 	}
 					}
 					cout << "Here is your board:\n";
 					player1.printPlayerPhase();
