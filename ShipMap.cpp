@@ -293,6 +293,36 @@ bool ShipMap::isShipDirectionGood(int row, int col, int shipSize, char shipDirec
 	return(itWorks);
 }
 
+void ShipMap::autoAddShips(int shipCount) {
+	int randRow = 0;
+	int randCol = 0;
+	int randDirInt = 0;
+	char randDirChar = '.';
+	for (int i = 1; i <= shipCount; i++) {
+		do {
+			randRow = rand() % 9;
+			randCol = rand() % 10;
+			randDirInt = rand() % 4;
+			if (randDirInt == 0) {
+				randDirChar = 'L';
+			}
+			if (randDirInt == 1) {
+				randDirChar = 'R';
+			}
+			if (randDirInt == 2) {
+				randDirChar = 'U';
+			}
+			if (randDirInt == 3) {
+				randDirChar = 'D';
+			}
+			else {
+				randDirChar = 'L';
+			}
+
+		} while (!isShipDirectionGood(randRow, randCol, i, randDirChar));
+		addShip(randRow, randCol, i, randDirChar);
+	}
+}
 
 bool ** ShipMap::getTableOfShips(){
 	bool ** returnShips;
