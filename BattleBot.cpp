@@ -305,8 +305,8 @@ int * BattleBot::randomSpace(){
     bool alreadyShotAt = false;
     do{
         cout<<"generating random target"<<endl;
-        target[0] = rand() % 8;
-        target[1] = rand() % 9;
+        target[0] = rand() % 9;
+        target[1] = rand() % 10;
         cout<<"Shot Matrix here: "<<shotMatrix[target[0]][target[1]]<<endl;
         if(shotMatrix[target[0]][target[1]] == 1){
             cout<<"already shot at"<<endl;
