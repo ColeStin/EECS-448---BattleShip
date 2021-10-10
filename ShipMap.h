@@ -88,7 +88,14 @@ class ShipMap
 	/// @return true if the direction of ship placement is not overlapping another ship or out of bounds
 	bool isShipDirectionGood(int row, int col, int shipSize, char direction);
 	
-
+	/// automatically add ships
+	///	
+	/// This function adds a certain number of ships to random positions on the given board
+	/// @param shipCount, number of ships to add
+	/// @post A number of ships equal to the shipCount will be added, calling the isShipDirectionGood function to ensure each ship is placed properly
+	/// @return none
+	void autoAddShips(int shipCount);
+	
 	///this function will get the array of ships and return it
 	///@return returns array of ship placement
 	bool ** getTableOfShips();

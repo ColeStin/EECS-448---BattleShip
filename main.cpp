@@ -8,6 +8,7 @@
 
 #include "SetUp.h"
 #include "BattleBot.h"
+#include <string>
 #include <iostream>
 #include <stdexcept>
 using namespace std;
@@ -19,7 +20,6 @@ int main(){
 	SetUp setUpObject;
 	player1 = setUpObject.returnMap(1);
 	player2 = setUpObject.returnMap(2);
-	player2.addShip(1, 2, 3, 'D');
 	string currentTurn = "player1";
 	string columnLetter, rowString;
 	int column, row;
@@ -74,8 +74,8 @@ int main(){
 					do
 					{
 						cin>>specialshotinput;
-					}
-					while((specialshotinput!="Y") & (specialshotinput!="y") & (specialshotinput!="N") & (specialshotinput!="n"));
+					}while((specialshotinput!="Y") & (specialshotinput!="y") & (specialshotinput!="N") & (specialshotinput!="n"));
+
 					if(stoi(rowString) < 10 && stoi(rowString) > 0){// This is for input sanitization
 						row = stoi(rowString);
 					}

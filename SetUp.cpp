@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include "SetUp.h"
 using namespace std;
 
@@ -206,6 +207,7 @@ SetUp::SetUp(){
 					}
 				}
 			}
+		player2Map.autoAddShips(ships);
 	}
 	
 }
