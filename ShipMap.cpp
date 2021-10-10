@@ -7,7 +7,11 @@
 
 #include "ShipMap.h"
 #include <stdexcept>
+#ifdef _WIN32
+#include <Windows.h>
+#else
 #include <unistd.h>
+#endif
 
 using namespace std;
 
@@ -437,8 +441,11 @@ void ShipMap::checkShipSank(int row, int col){
 		if(sunkShipTypes[type-1] == 0){
 			cout<<"You sunk thier "<<type<<"x1 ship has been sunk!";
 			cout<<endl;
-			sleep(1);
-			sleep(1);
+			#ifdef _WIN32
+				Sleep(3000);
+			#else
+				sleep(3);
+			#endif
 		}
 	}
 }
