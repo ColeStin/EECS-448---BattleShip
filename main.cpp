@@ -65,17 +65,17 @@ int main(){
 			validInput = false;
 			while(validInput == false){
 				try{
-					cout << "What column do you want to shoot at?" << endl;
+					cout << "What column do you want to shoot at? (A-J)" << endl;
 					cin >> columnLetter;
 					column = SetUp::lettersToNumbers(columnLetter);
-					cout << "What row do you want to shoot at?" << endl;
+					cout << "What row do you want to shoot at? (1-9)" << endl;
 					cin >> rowString;
-					cout<< "Would you like to use a special shot?"<<endl;
-					do 
+					cout<< "Would you like to use a special shot? (Y or N)"<<endl;
+					do
 					{
 						cin>>specialshotinput;
-					}
-					while(specialshotinput!="Y" && specialshotinput!="y" && specialshotinput!="N" && specialshotinput!="n");
+					}while((specialshotinput!="Y") & (specialshotinput!="y") & (specialshotinput!="N") & (specialshotinput!="n"));
+
 					if(stoi(rowString) < 10 && stoi(rowString) > 0){// This is for input sanitization
 						row = stoi(rowString);
 					}
@@ -84,9 +84,37 @@ int main(){
 					}
 					if(currentTurn == "player1"){
 						player2.addAttempt(row-1, column);
+						if((specialshotinput == "Y") | (specialshotinput == "y")){
+							if((row >= 0) & (row < 9)){
+								player2.addAttempt(row, column);
+							}
+							if(((row-2) >= 0) & ((row-2) < 9)){
+								player2.addAttempt(row-2, column);
+							}
+							if(((column+1) >= 0) & ((column+1) < 10)){
+								player2.addAttempt(row-1, column+1);
+							}
+							if(((column-1) >= 0) & ((column-1) < 10)){
+								player2.addAttempt(row-1, column-1);
+							}
+						}
 					}
 					else{
 						player1.addAttempt(row-1, column);
+						if((specialshotinput == "Y") | (specialshotinput == "y")){
+							if((row >= 0) & (row < 9)){
+								player1.addAttempt(row, column);
+							}
+							if(((row-2) >= 0) & ((row-2) < 9)){
+								player1.addAttempt(row-2, column);
+							}
+							if(((column+1) >= 0) & ((column+1) < 10)){
+								player1.addAttempt(row-1, column+1);
+							}
+							if(((column-1) >= 0) & ((column-1) < 10)){
+								player1.addAttempt(row-1, column-1);
+							}
+						}
 					}
 					validInput = true;// if we got to this point without throwing an exception, then we can stop looping and pass the turn
 				}
@@ -186,9 +214,9 @@ int main(){
 						Bot.setHitMiss('m');
 					}
 					cout<<endl;
-					
+
 				}
-				
+
 				if(currentTurn == "player1"){
 					currentTurn = "player2";
 				}
