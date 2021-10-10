@@ -25,7 +25,8 @@ int main(){
 	int column, row;
 	bool validInput;
 	bool isStarted = 0;
-	string specialshotinput;
+	string specialshotinput1;
+	string specialshotinput2;
 
 	if(setUpObject.getPlaystyle() == "PvP"){
 		while (!player1.isGameOver() && !player2.isGameOver()){// while neither player has lost the game
@@ -70,12 +71,6 @@ int main(){
 					column = SetUp::lettersToNumbers(columnLetter);
 					cout << "What row do you want to shoot at? (1-9)" << endl;
 					cin >> rowString;
-					cout<< "Would you like to use a special shot? (Y or N)"<<endl;
-					do
-					{
-						cin>>specialshotinput;
-					}while((specialshotinput!="Y") & (specialshotinput!="y") & (specialshotinput!="N") & (specialshotinput!="n"));
-
 					if(stoi(rowString) < 10 && stoi(rowString) > 0){// This is for input sanitization
 						row = stoi(rowString);
 					}
@@ -83,16 +78,32 @@ int main(){
 						throw string("Row out of bounds");
 					}
 					if(currentTurn == "player1"){
-						if((specialshotinput == "Y") | (specialshotinput == "y")){
+						if(specialshotinput1 != "u"){
+							cout<< "Would you like to use a special shot? (Y or N)"<<endl;
+							do
+							{
+								cin>>specialshotinput1;
+							}while((specialshotinput1!="Y") & (specialshotinput1!="y") & (specialshotinput1!="N") & (specialshotinput1!="n"));
+						}
+						if((specialshotinput1 == "Y") | (specialshotinput1 == "y")){
 							player2.addSpecialAttempt((row-1), column);
+							specialshotinput1 = "u";
 						}
 						else{
 							player2.addAttempt(row-1, column);
 						}
 					}
 					else{
-						if((specialshotinput == "Y") | (specialshotinput == "y")){
+						if(specialshotinput2 != "u"){
+							cout<< "Would you like to use a special shot? (Y or N)"<<endl;
+							do
+							{
+								cin>>specialshotinput2;
+							}while((specialshotinput2!="Y") & (specialshotinput2!="y") & (specialshotinput2!="N") & (specialshotinput2!="n"));
+						}
+						if((specialshotinput2 == "Y") | (specialshotinput2 == "y")){
 							player1.addSpecialAttempt((row-1), column);
+							specialshotinput2 = "u";
 						}
 						else{
 							player1.addAttempt(row-1, column);
@@ -161,7 +172,20 @@ int main(){
 							else{
 								throw string("Row out of bounds");
 							}
-							player2.addAttempt(row-1, column);
+							if(specialshotinput1 != "u"){
+								cout<< "Would you like to use a special shot? (Y or N)"<<endl;
+								do
+								{
+									cin>>specialshotinput1;
+								}while((specialshotinput1!="Y") & (specialshotinput1!="y") & (specialshotinput1!="N") & (specialshotinput1!="n"));
+							}
+							if((specialshotinput1 == "Y") | (specialshotinput1 == "y")){
+								player2.addSpecialAttempt((row-1), column);
+								specialshotinput1 = "u";
+							}
+							else{
+								player2.addAttempt(row-1, column);
+							}
 							validInput = true;// if we got to this point without throwing an exception, then we can stop looping and pass the turn
 						}
 						catch (string e){
