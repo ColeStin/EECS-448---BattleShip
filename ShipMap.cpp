@@ -7,6 +7,8 @@
 
 #include "ShipMap.h"
 #include <stdexcept>
+#include <unistd.h>
+
 using namespace std;
 
 ShipMap::ShipMap() // initializes the arrays with 0s
@@ -18,7 +20,11 @@ ShipMap::ShipMap() // initializes the arrays with 0s
 		{
 			ships[i][j] = 0;
 			attempts[i][j] = 0;
+			shipTypesPlacement[i][j] = 0;
 		}
+	}
+	for(int i = 0;  i< 6; i++){
+		sunkShipTypes[i] = 0;
 	}
 
 }
@@ -44,6 +50,10 @@ bool ShipMap::addShip(int row, int col, int shipSize, char direction) // Adds a 
 {
 	bool shipIsGood = 0; // used to end while loop
 	bool isDirectionGood = 0;
+	
+	//add ship length to array 
+	sunkShipTypes[shipSize-1] = shipSize;
+
 	try
 		{
 			if(ships[row][col] == 1) // throws an error when ship is already in initial space
@@ -53,6 +63,7 @@ bool ShipMap::addShip(int row, int col, int shipSize, char direction) // Adds a 
 			if(shipSize == 1) // places ship of size 1 in initial space
 			{
 				ships[row][col] = 1;
+				shipTypesPlacement[row][col] = 1;
 				lives++; // whenever a ship is added the player gains a life
 				return true;
 			}
@@ -66,6 +77,7 @@ bool ShipMap::addShip(int row, int col, int shipSize, char direction) // Adds a 
 							for(int i = 0; i < shipSize; i++)
 							{
 								ships[row][col-i] = 1;
+								shipTypesPlacement[row][col-i] = shipSize;
 								lives++;
 							}
 							return true;
@@ -75,6 +87,7 @@ bool ShipMap::addShip(int row, int col, int shipSize, char direction) // Adds a 
 							for(int i = 0; i < shipSize; i++)
 							{
 								ships[row][col+i] = 1;
+								shipTypesPlacement[row][col+i] = shipSize;
 								lives++;
 							}
 							return true;
@@ -84,6 +97,7 @@ bool ShipMap::addShip(int row, int col, int shipSize, char direction) // Adds a 
 							for(int i = 0; i < shipSize; i++)
 							{
 								ships[row-i][col] = 1;
+								shipTypesPlacement[row-i][col] = shipSize;
 								lives++;
 							}
 							return true;
@@ -93,6 +107,7 @@ bool ShipMap::addShip(int row, int col, int shipSize, char direction) // Adds a 
 							for(int i = 0; i < shipSize; i++)
 							{
 								ships[row+i][col] = 1;
+								shipTypesPlacement[row+i][col] = shipSize;
 								lives++;
 							}
 							return true;
@@ -141,6 +156,7 @@ void ShipMap::addAttempt(int row, int col) // Adds an attempt to the attempt arr
 				cout << "Miss. \n";
 			}
 			attemptIsGood = 1;
+			checkShipSank(row, col);
 		}
 		else
 		{
@@ -153,6 +169,7 @@ void ShipMap::addAttempt(int row, int col) // Adds an attempt to the attempt arr
 void ShipMap::addSpecialAttempt(int row, int col) // Adds an attempt to the attempt array
 {
 	attempts[row][col] = 1;
+	checkShipSank(row, col);
 	if(isHit(row, col))
 	{
 		lives--;
@@ -164,6 +181,7 @@ void ShipMap::addSpecialAttempt(int row, int col) // Adds an attempt to the atte
 	}
 	if(((row+1) >= 0) & ((row+1) < 9)){
 		attempts[row+1][col] = 1;
+		checkShipSank(row+1, col);
 		if(isHit((row+1), col))
 		{
 			lives--;
@@ -176,6 +194,7 @@ void ShipMap::addSpecialAttempt(int row, int col) // Adds an attempt to the atte
 	}
 	if(((row-1) >= 0) & ((row-1) < 9)){
 		attempts[row-1][col] = 1;
+		checkShipSank(row-1, col);
 		if(isHit((row-1), col))
 		{
 			lives--;
@@ -188,6 +207,7 @@ void ShipMap::addSpecialAttempt(int row, int col) // Adds an attempt to the atte
 	}
 	if(((col+1) >= 0) & ((col+1) < 10)){
 		attempts[row][col+1] = 1;
+		checkShipSank(row, col+1);
 		if(isHit(row, (col+1)))
 		{
 			lives--;
@@ -200,6 +220,7 @@ void ShipMap::addSpecialAttempt(int row, int col) // Adds an attempt to the atte
 	}
 	if(((col-1) >= 0) & ((col-1) < 10)){
 		attempts[row][col-1] = 1;
+		checkShipSank(row, col-1);
 		if(isHit(row, (col-1)))
 		{
 			lives--;
@@ -403,4 +424,21 @@ bool ** ShipMap::getTableOfShips(){
 
 int ShipMap::getLives(){
 	return(lives);
+}
+
+void ShipMap::checkShipSank(int row, int col){
+	//first update the array, check and see if cooridnates are non-zero, then take that and
+	//subract 1 from the sunk ships array at that coorindates number, and check if it is 0. if it is zero
+	//output that it has been sunk
+	int type = shipTypesPlacement[row][col];
+	if(type !=0){
+		shipTypesPlacement[row][col] = 0;
+		sunkShipTypes[type-1]--;
+		if(sunkShipTypes[type-1] == 0){
+			cout<<"You sunk thier "<<type<<"x1 ship has been sunk!";
+			cout<<endl;
+			sleep(1);
+			sleep(1);
+		}
+	}
 }

@@ -117,7 +117,17 @@ class ShipMap
 	///@return Number of lives a player has
 	int getLives();
 
+	///This funciton will check if any ships have been sunk during the previous 
+	///turn, and will output if a ship was sunk after every fire
+	///@param row this is the row of the shot that was just fired
+	///@param col this is the column of the shot that was just fired
+	///@post None this function does not return anything
+	///it will update the current placement of the shipTypesPlacement and subtract from sunk ships array
+	void checkShipSank(int row, int col);
+
 	private:
+	int shipTypesPlacement[9][10];
+	int sunkShipTypes[6];
 	bool ships[9][10];
 	bool attempts[9][10];
 	int lives;
