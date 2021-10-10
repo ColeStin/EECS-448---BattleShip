@@ -84,22 +84,36 @@ int main(){
 					}
 					if(currentTurn == "player1"){
 						player2.addAttempt(row-1, column);
-						if((specialshotinput == "Y") | (specialshotinput == "y"))
-						{
-							player2.addAttempt(row, column);
-							player2.addAttempt(row-2, column);
-							player2.addAttempt(row-1, column+1);
-							player2.addAttempt(row-1, column-1);
+						if((specialshotinput == "Y") | (specialshotinput == "y")){
+							if((row >= 0) & (row < 9)){
+								player2.addAttempt(row, column);
+							}
+							if(((row-2) >= 0) & ((row-2) < 9)){
+								player2.addAttempt(row-2, column);
+							}
+							if(((column+1) >= 0) & ((column+1) < 10)){
+								player2.addAttempt(row-1, column+1);
+							}
+							if(((column-1) >= 0) & ((column-1) < 10)){
+								player2.addAttempt(row-1, column-1);
+							}
 						}
 					}
 					else{
 						player1.addAttempt(row-1, column);
-						if((specialshotinput == "Y") | (specialshotinput == "y"))
-						{
-							player1.addAttempt(row, column);
-							player1.addAttempt(row-2, column);
-							player1.addAttempt(row-1, column+1);
-							player1.addAttempt(row-1, column-1);
+						if((specialshotinput == "Y") | (specialshotinput == "y")){
+							if((row >= 0) & (row < 9)){
+								player1.addAttempt(row, column);
+							}
+							if(((row-2) >= 0) & ((row-2) < 9)){
+								player1.addAttempt(row-2, column);
+							}
+							if(((column+1) >= 0) & ((column+1) < 10)){
+								player1.addAttempt(row-1, column+1);
+							}
+							if(((column-1) >= 0) & ((column-1) < 10)){
+								player1.addAttempt(row-1, column-1);
+							}
 						}
 					}
 					validInput = true;// if we got to this point without throwing an exception, then we can stop looping and pass the turn
