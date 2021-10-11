@@ -1,5 +1,0 @@
-Estimate: 40 hours
-
-With 5 people working on this, with each person working 4 hours each week
-and the project taking ~2 weeks to complete, it should take 40 hours in total to work on this project.
-

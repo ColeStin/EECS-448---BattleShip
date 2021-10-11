@@ -1,4 +1,0 @@
-
-We wrote all code from scratch.
-We included two C++ libraries, <iostream> and <stdexcept>
-
