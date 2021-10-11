@@ -78,6 +78,16 @@ SetUp::SetUp(){
 						if(row < 1 || row > 9){
 							throw string("Out of Bounds");
 						}
+						if(playerNum==1) {
+							if (player1Map.isShipDirectionGood(row, col, i, 'L') == 0 && player1Map.isShipDirectionGood(row, col, i, 'R') == 0 && player1Map.isShipDirectionGood(row, col, i, 'U') == 0 && player1Map.isShipDirectionGood(row, col, i, 'D') == 0) {
+								throw string("No possible ship orientations for this space. Please choose another space.");
+							}
+						}
+						else if(playerNum==2) {
+							if (player2Map.isShipDirectionGood(row, col, i, 'L') == 0 && player2Map.isShipDirectionGood(row, col, i, 'R') == 0 && player2Map.isShipDirectionGood(row, col, i, 'U') == 0 && player2Map.isShipDirectionGood(row, col, i, 'D') == 0) {
+								throw string("No possible ship orientations for this space. Please choose another space.");
+							}
+						}
 
 						bool correct = true;
 						do{
@@ -91,7 +101,12 @@ SetUp::SetUp(){
 							if(playerNum == 1){
 								valid_input = player1Map.addShip(row-1, col, i, direction);
 								if(valid_input){
-									cout << "Type any character and hit enter to turn over screen to Player 2";
+									if (i == ships) {
+										cout << "Type any character and hit enter to turn over screen to Player 2";
+									}
+									else {
+										cout << "Type any character and hit enter to place your next ship";
+									}
 									cin >> emptyString;
 									for(int n = 0; n < 10; n++){
 										cout << "\n";
@@ -111,7 +126,12 @@ SetUp::SetUp(){
 							else{
 									valid_input = player2Map.addShip(row-1, col, i, direction);
 									if(valid_input){
-									cout << "Type any character and hit enter to turn over screen to Player 2";
+									if (i == ships) {
+										cout << "Type any character and hit enter to turn over screen to Player 1";
+									}
+									else {
+										cout << "Type any character and hit enter to place your next ship";
+									}
 									cin >> emptyString;
 									for(int n = 0; n < 10; n++){
 										cout << "\n";
@@ -172,6 +192,9 @@ SetUp::SetUp(){
 						row = stoi(rowString);// throws an invalid_argument exception when it fails;
 						if(row < 1 || row > 9){
 							throw string("Out of Bounds");
+						}
+						if (player1Map.isShipDirectionGood(row, col, i, 'L') == 0 && player1Map.isShipDirectionGood(row, col, i, 'R') == 0 && player1Map.isShipDirectionGood(row, col, i, 'U') == 0 && player1Map.isShipDirectionGood(row, col, i, 'D') == 0) {
+							throw string("No possible ship orientations for this space. Please choose another space.");
 						}
 
 						do{

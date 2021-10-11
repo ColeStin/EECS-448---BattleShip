@@ -126,7 +126,7 @@ bool ShipMap::addShip(int row, int col, int shipSize, char direction) // Adds a 
 
 						}
 						else{
-							cout<<"Invalid direction, please select different direciton."<<endl;
+							cout<<"Invalid direction, please select different direction."<<endl;
 							return false;
 						}
 						// throw string("This Direction doesn't work. please choose another");
@@ -374,9 +374,6 @@ bool ShipMap::isShipDirectionGood(int row, int col, int shipSize, char shipDirec
 				}
 			}
 		}
-	}
-	if(!itWorks){
-		cout<<"It doesnt work"<<endl;
 	}
 	return(itWorks);
 }
