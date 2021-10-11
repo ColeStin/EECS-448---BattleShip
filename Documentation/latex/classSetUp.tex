@@ -1,0 +1,80 @@
+\hypertarget{classSetUp}{}\section{Set\+Up Class Reference}
+\label{classSetUp}\index{Set\+Up@{Set\+Up}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classSetUp_a3e6bcef0f800ce09183e82033de9d40b}{Set\+Up} ()
+\item 
+\hyperlink{classShipMap}{Ship\+Map} \hyperlink{classSetUp_af5bb381f047ec77aba1b3cb51c403244}{return\+Map} (int player)
+\item 
+\mbox{\Hypertarget{classSetUp_a20678055edae484f1e3652f60f5d6e3c}\label{classSetUp_a20678055edae484f1e3652f60f5d6e3c}} 
+int \hyperlink{classSetUp_a20678055edae484f1e3652f60f5d6e3c}{get\+Dif} ()
+\begin{DoxyCompactList}\small\item\em returns difficulty of the bot, if AI is selected \end{DoxyCompactList}\item 
+std\+::string \hyperlink{classSetUp_ac97974e28cc81cbc42d8b2f91df87c37}{get\+Playstyle} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{classSetUp_a8f7d45dcde5df9f7f421a1193f3a9836}{letters\+To\+Numbers} (std\+::string letter)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classSetUp_a3e6bcef0f800ce09183e82033de9d40b}\label{classSetUp_a3e6bcef0f800ce09183e82033de9d40b}} 
+\index{Set\+Up@{Set\+Up}!Set\+Up@{Set\+Up}}
+\index{Set\+Up@{Set\+Up}!Set\+Up@{Set\+Up}}
+\subsubsection{\texorpdfstring{Set\+Up()}{SetUp()}}
+{\footnotesize\ttfamily Set\+Up\+::\+Set\+Up (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Sets up the game board
+
+sets up a 9x10 board via ship map methods and welcomes users. Determines if input is good/bad Asks user for \# of ships 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classSetUp_ac97974e28cc81cbc42d8b2f91df87c37}\label{classSetUp_ac97974e28cc81cbc42d8b2f91df87c37}} 
+\index{Set\+Up@{Set\+Up}!get\+Playstyle@{get\+Playstyle}}
+\index{get\+Playstyle@{get\+Playstyle}!Set\+Up@{Set\+Up}}
+\subsubsection{\texorpdfstring{get\+Playstyle()}{getPlaystyle()}}
+{\footnotesize\ttfamily string Set\+Up\+::get\+Playstyle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+a simple function to return what the type of play style is just returns the playstyle \begin{DoxyPostcond}{Postcondition}
+returns the play style 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{classSetUp_a8f7d45dcde5df9f7f421a1193f3a9836}\label{classSetUp_a8f7d45dcde5df9f7f421a1193f3a9836}} 
+\index{Set\+Up@{Set\+Up}!letters\+To\+Numbers@{letters\+To\+Numbers}}
+\index{letters\+To\+Numbers@{letters\+To\+Numbers}!Set\+Up@{Set\+Up}}
+\subsubsection{\texorpdfstring{letters\+To\+Numbers()}{lettersToNumbers()}}
+{\footnotesize\ttfamily int Set\+Up\+::letters\+To\+Numbers (\begin{DoxyParamCaption}\item[{std\+::string}]{letter }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+converts letters to numbers
+
+static function that takes in a letter as colum and conver to number for array format 
+\begin{DoxyParams}{Parameters}
+{\em letter} & that is chosen from column input \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSetUp_af5bb381f047ec77aba1b3cb51c403244}\label{classSetUp_af5bb381f047ec77aba1b3cb51c403244}} 
+\index{Set\+Up@{Set\+Up}!return\+Map@{return\+Map}}
+\index{return\+Map@{return\+Map}!Set\+Up@{Set\+Up}}
+\subsubsection{\texorpdfstring{return\+Map()}{returnMap()}}
+{\footnotesize\ttfamily \hyperlink{classShipMap}{Ship\+Map} Set\+Up\+::return\+Map (\begin{DoxyParamCaption}\item[{int}]{player }\end{DoxyParamCaption})}
+
+takes in a play and returns map
+
+\begin{DoxyPrecond}{Precondition}
+ship maps set up 
+\end{DoxyPrecond}
+
+\begin{DoxyParams}{Parameters}
+{\em player} & -\/ takes in a player and returns their map and hits/misses \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPostcond}{Postcondition}
+returns map object after each turn 
+\end{DoxyPostcond}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Set\+Up.\+h\item 
+Set\+Up.\+cpp\end{DoxyCompactItemize}
