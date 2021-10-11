@@ -256,7 +256,7 @@ void ShipMap::printPlayerPhase() // prints the grid showing information during p
 			}
 			else if(ships[i][j] == 0 && attempts[i][j] == 1) // prints a miss
 			{
-				cout << "* ";
+				cout << "O ";
 			}
 			else // prints empty ocean
 			{
@@ -281,7 +281,7 @@ void ShipMap::printEnemyPhase() // prints the grid showing information during en
 			}
 			else if(ships[i][j] == 0 && attempts[i][j] == 1) // prints a miss
 			{
-				cout << "* ";
+				cout << "O ";
 			}
 			else // prints empty ocean
 			{

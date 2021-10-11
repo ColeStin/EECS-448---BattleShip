@@ -31,8 +31,8 @@ int main(){
 
 	if(setUpObject.getPlaystyle() == "PvP"){
 		while (!player1.isGameOver() && !player2.isGameOver()){// while neither player has lost the game
-		cout << string(1000, '\n');
-		cout << "-----\nLegend\n-----\nX: Hit\n*: Opposing player's missed attempt\n#: Live ship\n~: Empty ocean\n\n";
+			cout << string(1000, '\n');
+			cout << "-----\nLegend\n-----\nX: Hit\nO: Opposing player's missed attempt\n#: Live ship\n~: Empty ocean\n\n";
 			cout << "Hello " + currentTurn + "! Here are the attempts you've made on your opponent's board" << endl;
 			if(currentTurn == "player1"){
 				player2.printEnemyPhase();
@@ -144,6 +144,8 @@ int main(){
 		currentLivesAI = player1.getLives();
 		while (!player1.isGameOver() && !player2.isGameOver()){
 				if(currentTurn == "player1"){
+					cout << string(1000, '\n');
+					cout << "-----\nLegend\n-----\nX: Hit\nO: Opposing player's missed attempt\n#: Live ship\n~: Empty ocean\n\n";
 					cout << "Hello " + currentTurn + "! Here are the attempts you've made on your opponent's board" << endl;
 					player2.printEnemyPhase();
 					if(isStarted){
