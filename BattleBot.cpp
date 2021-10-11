@@ -26,7 +26,7 @@ void BattleBot::setHitMiss(char hOm){
 }
 
 int * BattleBot::selectTarget(){
-    int * target;
+    int * target = nullptr;
     if(difficulty==1){
         target = easyShot();
 
