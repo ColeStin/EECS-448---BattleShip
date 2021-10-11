@@ -1,0 +1,299 @@
+\hypertarget{classShipMap}{}\section{Ship\+Map Class Reference}
+\label{classShipMap}\index{Ship\+Map@{Ship\+Map}}
+
+
+{\ttfamily \#include $<$Ship\+Map.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classShipMap_af52a69332839e08c8f4c6e24758f32da}{Ship\+Map} ()
+\item 
+\mbox{\Hypertarget{classShipMap_a82afc59f9e7ed5b8d208de36bab9236c}\label{classShipMap_a82afc59f9e7ed5b8d208de36bab9236c}} 
+\hyperlink{classShipMap_a82afc59f9e7ed5b8d208de36bab9236c}{$\sim$\+Ship\+Map} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{classShipMap}{Ship\+Map} destructor. \end{DoxyCompactList}\item 
+bool \hyperlink{classShipMap_acbcf28e008f8852cba70071dbd01d3d7}{is\+Hit} (int row, int col)
+\item 
+void \hyperlink{classShipMap_a3406681bb484d65d1ee500e373facd52}{print\+Player\+Phase} ()
+\item 
+void \hyperlink{classShipMap_ada4c2a63b5cf6f8cac09c5827cb36a7c}{print\+Enemy\+Phase} ()
+\item 
+bool \hyperlink{classShipMap_a5058e9e8169f0b178ac604e0dbca760e}{add\+Ship} (int row, int col, int ship\+Size, char direction)
+\item 
+void \hyperlink{classShipMap_a216754cfcb75424c6dfd8fcb3f0976c3}{add\+Attempt} (int row, int col)
+\item 
+void \hyperlink{classShipMap_a58ca03a712d0a8e4f1376ff7b79f83ae}{add\+Special\+Attempt} (int row, int col)
+\item 
+bool \hyperlink{classShipMap_a6dbc6a05cdc3ff75bf43f66b9a23fd47}{is\+Game\+Over} ()
+\item 
+bool \hyperlink{classShipMap_a881a6669552d2fba7d88f53c1ef21985}{is\+Ship\+Direction\+Good} (int row, int col, int ship\+Size, char direction)
+\item 
+void \hyperlink{classShipMap_ad8b0821085e4fe522658c529f72ce477}{auto\+Add\+Ships} (int ship\+Count)
+\item 
+bool $\ast$$\ast$ \hyperlink{classShipMap_a3db9ea06b3d046991d891ae537da8cf9}{get\+Table\+Of\+Ships} ()
+\item 
+int \hyperlink{classShipMap_ac9ff6e1eb462884b8c0b9cd4bafaf471}{get\+Lives} ()
+\item 
+void \hyperlink{classShipMap_aad5f7baf4e69a8bee04b3d132c52ead1}{check\+Ship\+Sank} (int row, int col)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File Name\+: \hyperlink{ShipMap_8h_source}{Ship\+Map.\+h} Author\+: Ian Strasma Date\+: 09/08/2021 Brief\+: A header file for \hyperlink{classShipMap}{Ship\+Map} class 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classShipMap_af52a69332839e08c8f4c6e24758f32da}\label{classShipMap_af52a69332839e08c8f4c6e24758f32da}} 
+\index{Ship\+Map@{Ship\+Map}!Ship\+Map@{Ship\+Map}}
+\index{Ship\+Map@{Ship\+Map}!Ship\+Map@{Ship\+Map}}
+\subsubsection{\texorpdfstring{Ship\+Map()}{ShipMap()}}
+{\footnotesize\ttfamily Ship\+Map\+::\+Ship\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+constructor that makes the \hyperlink{classShipMap}{Ship\+Map} object
+
+\begin{DoxyPrecond}{Precondition}
+none 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+the arrays are initialized and lives is set to 0 
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classShipMap_a216754cfcb75424c6dfd8fcb3f0976c3}\label{classShipMap_a216754cfcb75424c6dfd8fcb3f0976c3}} 
+\index{Ship\+Map@{Ship\+Map}!add\+Attempt@{add\+Attempt}}
+\index{add\+Attempt@{add\+Attempt}!Ship\+Map@{Ship\+Map}}
+\subsubsection{\texorpdfstring{add\+Attempt()}{addAttempt()}}
+{\footnotesize\ttfamily void Ship\+Map\+::add\+Attempt (\begin{DoxyParamCaption}\item[{int}]{row,  }\item[{int}]{col }\end{DoxyParamCaption})}
+
+add attempt
+
+this functopm adds an attempt to array of attempts \begin{DoxyPrecond}{Precondition}
+Coordinates for the specific column and row 
+\end{DoxyPrecond}
+
+\begin{DoxyParams}{Parameters}
+{\em row} & coordinate \\
+\hline
+{\em col} & coordinate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPostcond}{Postcondition}
+Adds an attempt to the attempt array 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{classShipMap_a5058e9e8169f0b178ac604e0dbca760e}\label{classShipMap_a5058e9e8169f0b178ac604e0dbca760e}} 
+\index{Ship\+Map@{Ship\+Map}!add\+Ship@{add\+Ship}}
+\index{add\+Ship@{add\+Ship}!Ship\+Map@{Ship\+Map}}
+\subsubsection{\texorpdfstring{add\+Ship()}{addShip()}}
+{\footnotesize\ttfamily bool Ship\+Map\+::add\+Ship (\begin{DoxyParamCaption}\item[{int}]{row,  }\item[{int}]{col,  }\item[{int}]{ship\+Size,  }\item[{char}]{direction }\end{DoxyParamCaption})}
+
+add ship function
+
+function that takes in coordinates and shipsize then adds it the board \begin{DoxyPrecond}{Precondition}
+Coordinates for the specific column and row as well as length of ship 
+\end{DoxyPrecond}
+
+\begin{DoxyParams}{Parameters}
+{\em row} & coordinate \\
+\hline
+{\em col} & coordinate \\
+\hline
+{\em ship\+Size} & size of ship to be added \\
+\hline
+{\em direction} & direction of the ship \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPostcond}{Postcondition}
+Adds a ship to the ship array 
+\end{DoxyPostcond}
+\begin{DoxyReturn}{Returns}
+returns whether the ship was able to be added or not 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classShipMap_a58ca03a712d0a8e4f1376ff7b79f83ae}\label{classShipMap_a58ca03a712d0a8e4f1376ff7b79f83ae}} 
+\index{Ship\+Map@{Ship\+Map}!add\+Special\+Attempt@{add\+Special\+Attempt}}
+\index{add\+Special\+Attempt@{add\+Special\+Attempt}!Ship\+Map@{Ship\+Map}}
+\subsubsection{\texorpdfstring{add\+Special\+Attempt()}{addSpecialAttempt()}}
+{\footnotesize\ttfamily void Ship\+Map\+::add\+Special\+Attempt (\begin{DoxyParamCaption}\item[{int}]{row,  }\item[{int}]{col }\end{DoxyParamCaption})}
+
+add special attempt
+
+this functopm adds multiple attempts to array of attempts \begin{DoxyPrecond}{Precondition}
+Coordinates for the specific column and row 
+\end{DoxyPrecond}
+
+\begin{DoxyParams}{Parameters}
+{\em row} & coordinate \\
+\hline
+{\em col} & coordinate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPostcond}{Postcondition}
+Adds multiple attempt to the attempt array 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{classShipMap_ad8b0821085e4fe522658c529f72ce477}\label{classShipMap_ad8b0821085e4fe522658c529f72ce477}} 
+\index{Ship\+Map@{Ship\+Map}!auto\+Add\+Ships@{auto\+Add\+Ships}}
+\index{auto\+Add\+Ships@{auto\+Add\+Ships}!Ship\+Map@{Ship\+Map}}
+\subsubsection{\texorpdfstring{auto\+Add\+Ships()}{autoAddShips()}}
+{\footnotesize\ttfamily void Ship\+Map\+::auto\+Add\+Ships (\begin{DoxyParamCaption}\item[{int}]{ship\+Count }\end{DoxyParamCaption})}
+
+automatically add ships
+
+This function adds a certain number of ships to random positions on the given board 
+\begin{DoxyParams}{Parameters}
+{\em ship\+Count,number} & of ships to add \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPostcond}{Postcondition}
+A number of ships equal to the ship\+Count will be added, calling the is\+Ship\+Direction\+Good function to ensure each ship is placed properly 
+\end{DoxyPostcond}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classShipMap_aad5f7baf4e69a8bee04b3d132c52ead1}\label{classShipMap_aad5f7baf4e69a8bee04b3d132c52ead1}} 
+\index{Ship\+Map@{Ship\+Map}!check\+Ship\+Sank@{check\+Ship\+Sank}}
+\index{check\+Ship\+Sank@{check\+Ship\+Sank}!Ship\+Map@{Ship\+Map}}
+\subsubsection{\texorpdfstring{check\+Ship\+Sank()}{checkShipSank()}}
+{\footnotesize\ttfamily void Ship\+Map\+::check\+Ship\+Sank (\begin{DoxyParamCaption}\item[{int}]{row,  }\item[{int}]{col }\end{DoxyParamCaption})}
+
+This funciton will check if any ships have been sunk during the previous turn, and will output if a ship was sunk after every fire 
+\begin{DoxyParams}{Parameters}
+{\em row} & this is the row of the shot that was just fired \\
+\hline
+{\em col} & this is the column of the shot that was just fired \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPostcond}{Postcondition}
+None this function does not return anything it will update the current placement of the ship\+Types\+Placement and subtract from sunk ships array 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{classShipMap_ac9ff6e1eb462884b8c0b9cd4bafaf471}\label{classShipMap_ac9ff6e1eb462884b8c0b9cd4bafaf471}} 
+\index{Ship\+Map@{Ship\+Map}!get\+Lives@{get\+Lives}}
+\index{get\+Lives@{get\+Lives}!Ship\+Map@{Ship\+Map}}
+\subsubsection{\texorpdfstring{get\+Lives()}{getLives()}}
+{\footnotesize\ttfamily int Ship\+Map\+::get\+Lives (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+get Lives
+
+this function returns how many lives a player has 
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPostcond}{Postcondition}
+None 
+\end{DoxyPostcond}
+\begin{DoxyReturn}{Returns}
+Number of lives a player has 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classShipMap_a3db9ea06b3d046991d891ae537da8cf9}\label{classShipMap_a3db9ea06b3d046991d891ae537da8cf9}} 
+\index{Ship\+Map@{Ship\+Map}!get\+Table\+Of\+Ships@{get\+Table\+Of\+Ships}}
+\index{get\+Table\+Of\+Ships@{get\+Table\+Of\+Ships}!Ship\+Map@{Ship\+Map}}
+\subsubsection{\texorpdfstring{get\+Table\+Of\+Ships()}{getTableOfShips()}}
+{\footnotesize\ttfamily bool $\ast$$\ast$ Ship\+Map\+::get\+Table\+Of\+Ships (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+this function will get the array of ships and return it \begin{DoxyReturn}{Returns}
+returns array of ship placement 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classShipMap_a6dbc6a05cdc3ff75bf43f66b9a23fd47}\label{classShipMap_a6dbc6a05cdc3ff75bf43f66b9a23fd47}} 
+\index{Ship\+Map@{Ship\+Map}!is\+Game\+Over@{is\+Game\+Over}}
+\index{is\+Game\+Over@{is\+Game\+Over}!Ship\+Map@{Ship\+Map}}
+\subsubsection{\texorpdfstring{is\+Game\+Over()}{isGameOver()}}
+{\footnotesize\ttfamily bool Ship\+Map\+::is\+Game\+Over (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+determines if game is over
+
+boolean function that keeps track of number of ships left and when 0 ships are left returns true \begin{DoxyPrecond}{Precondition}
+None 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+None 
+\end{DoxyPostcond}
+\begin{DoxyReturn}{Returns}
+Returns true if player has 0 lives remaining 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classShipMap_acbcf28e008f8852cba70071dbd01d3d7}\label{classShipMap_acbcf28e008f8852cba70071dbd01d3d7}} 
+\index{Ship\+Map@{Ship\+Map}!is\+Hit@{is\+Hit}}
+\index{is\+Hit@{is\+Hit}!Ship\+Map@{Ship\+Map}}
+\subsubsection{\texorpdfstring{is\+Hit()}{isHit()}}
+{\footnotesize\ttfamily bool Ship\+Map\+::is\+Hit (\begin{DoxyParamCaption}\item[{int}]{row,  }\item[{int}]{col }\end{DoxyParamCaption})}
+
+function that determines if ship has been hit
+
+this function returns a bool, true if ship has been hit, false if not \begin{DoxyPrecond}{Precondition}
+Coordinates for the specific column and row 
+\end{DoxyPrecond}
+
+\begin{DoxyParams}{Parameters}
+{\em row} & coordinate \\
+\hline
+{\em col} & coordinate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the there is both a ship and an attempt in corrsponding spots (ship has been hit) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classShipMap_a881a6669552d2fba7d88f53c1ef21985}\label{classShipMap_a881a6669552d2fba7d88f53c1ef21985}} 
+\index{Ship\+Map@{Ship\+Map}!is\+Ship\+Direction\+Good@{is\+Ship\+Direction\+Good}}
+\index{is\+Ship\+Direction\+Good@{is\+Ship\+Direction\+Good}!Ship\+Map@{Ship\+Map}}
+\subsubsection{\texorpdfstring{is\+Ship\+Direction\+Good()}{isShipDirectionGood()}}
+{\footnotesize\ttfamily bool Ship\+Map\+::is\+Ship\+Direction\+Good (\begin{DoxyParamCaption}\item[{int}]{row,  }\item[{int}]{col,  }\item[{int}]{ship\+Size,  }\item[{char}]{direction }\end{DoxyParamCaption})}
+
+determines if ship direction is good
+
+when players are choosing placement of ship, this function determines if the placement is valid and not overlapping and other ships or out of bounds \begin{DoxyPrecond}{Precondition}
+Coordinates for column and row, the size of the ship, and the direction the ship wants to face 
+\end{DoxyPrecond}
+
+\begin{DoxyParams}{Parameters}
+{\em row} & coordinate \\
+\hline
+{\em col} & coordinate \\
+\hline
+{\em shipsize} & takes in current size of ship \\
+\hline
+{\em direction} & takes in L (Left), R (Right), U (Up), or D (Down) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPostcond}{Postcondition}
+None 
+\end{DoxyPostcond}
+\begin{DoxyReturn}{Returns}
+true if the direction of ship placement is not overlapping another ship or out of bounds 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classShipMap_ada4c2a63b5cf6f8cac09c5827cb36a7c}\label{classShipMap_ada4c2a63b5cf6f8cac09c5827cb36a7c}} 
+\index{Ship\+Map@{Ship\+Map}!print\+Enemy\+Phase@{print\+Enemy\+Phase}}
+\index{print\+Enemy\+Phase@{print\+Enemy\+Phase}!Ship\+Map@{Ship\+Map}}
+\subsubsection{\texorpdfstring{print\+Enemy\+Phase()}{printEnemyPhase()}}
+{\footnotesize\ttfamily void Ship\+Map\+::print\+Enemy\+Phase (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+prints enemy phase
+
+prints out what the enemies board looks like for current player \begin{DoxyPrecond}{Precondition}
+None 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Prints out the map of ships during the enemy\textquotesingle{}s phase 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{classShipMap_a3406681bb484d65d1ee500e373facd52}\label{classShipMap_a3406681bb484d65d1ee500e373facd52}} 
+\index{Ship\+Map@{Ship\+Map}!print\+Player\+Phase@{print\+Player\+Phase}}
+\index{print\+Player\+Phase@{print\+Player\+Phase}!Ship\+Map@{Ship\+Map}}
+\subsubsection{\texorpdfstring{print\+Player\+Phase()}{printPlayerPhase()}}
+{\footnotesize\ttfamily void Ship\+Map\+::print\+Player\+Phase (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+prints player phase
+
+prints the board of what the current player would see \begin{DoxyPrecond}{Precondition}
+None 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Prints out the map of ships during the player\textquotesingle{}s phase 
+\end{DoxyPostcond}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Ship\+Map.\+h\item 
+Ship\+Map.\+cpp\end{DoxyCompactItemize}

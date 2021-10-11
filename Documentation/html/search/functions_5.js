@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['returnmap_0',['returnMap',['../class_set_up.html#af5bb381f047ec77aba1b3cb51c403244',1,'SetUp']]]
+  ['letterstonumbers',['lettersToNumbers',['../classSetUp.html#a8f7d45dcde5df9f7f421a1193f3a9836',1,'SetUp']]]
 ];

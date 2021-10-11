@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['readme_0',['README',['../md__documentation__r_e_a_d_m_e.html',1,'']]],
-  ['readme_2emd_1',['README.md',['../_r_e_a_d_m_e_8md.html',1,'']]],
-  ['returnmap_2',['returnMap',['../class_set_up.html#af5bb381f047ec77aba1b3cb51c403244',1,'SetUp']]]
+  ['letterstonumbers',['lettersToNumbers',['../classSetUp.html#a8f7d45dcde5df9f7f421a1193f3a9836',1,'SetUp']]]
 ];

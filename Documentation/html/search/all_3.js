@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['main_0',['main',['../main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main.cpp']]],
-  ['main_2ecpp_1',['main.cpp',['../main_8cpp.html',1,'']]]
+  ['getdif',['getDif',['../classSetUp.html#a20678055edae484f1e3652f60f5d6e3c',1,'SetUp']]],
+  ['getlives',['getLives',['../classShipMap.html#ac9ff6e1eb462884b8c0b9cd4bafaf471',1,'ShipMap']]],
+  ['getplaystyle',['getPlaystyle',['../classSetUp.html#ac97974e28cc81cbc42d8b2f91df87c37',1,'SetUp']]],
+  ['gettableofships',['getTableOfShips',['../classShipMap.html#a3db9ea06b3d046991d891ae537da8cf9',1,'ShipMap']]]
 ];

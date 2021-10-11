@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['addattempt_0',['addAttempt',['../class_ship_map.html#a216754cfcb75424c6dfd8fcb3f0976c3',1,'ShipMap']]],
-  ['addship_1',['addShip',['../class_ship_map.html#a3f801ab1ccb30b8697df51e6bbe7ead7',1,'ShipMap']]]
+  ['addattempt',['addAttempt',['../classShipMap.html#a216754cfcb75424c6dfd8fcb3f0976c3',1,'ShipMap']]],
+  ['addship',['addShip',['../classShipMap.html#a5058e9e8169f0b178ac604e0dbca760e',1,'ShipMap']]],
+  ['addspecialattempt',['addSpecialAttempt',['../classShipMap.html#a58ca03a712d0a8e4f1376ff7b79f83ae',1,'ShipMap']]],
+  ['autoaddships',['autoAddShips',['../classShipMap.html#ad8b0821085e4fe522658c529f72ce477',1,'ShipMap']]]
 ];

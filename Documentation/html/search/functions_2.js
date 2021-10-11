@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['letterstonumbers_0',['lettersToNumbers',['../class_set_up.html#a8f7d45dcde5df9f7f421a1193f3a9836',1,'SetUp']]]
+  ['checkshipsank',['checkShipSank',['../classShipMap.html#aad5f7baf4e69a8bee04b3d132c52ead1',1,'ShipMap']]]
 ];
